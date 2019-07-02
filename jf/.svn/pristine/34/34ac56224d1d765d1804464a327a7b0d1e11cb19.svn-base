@@ -1,0 +1,356 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/jf/resources/css/bootstrap.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/GPA.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/main.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/header.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/footer.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/chart.css">
+</head>
+<body>
+<%@include file="../../common/navigation.jsp" %>
+<div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h1 class="h1-title">무비차트</h1>
+                </div>
+            </div>
+            <div class="row movie-chart">
+                <div class="col-sm-12" style="text-align: right">
+                    <select id="familysite">
+                        <option value="">예매율순</option>
+                        <option value="">평점순</option>
+                        <option value="">관객순</option>
+                    </select>
+                    <button type="button" title="새창" onclick="goFamilySite()">GO</button>
+                </div>
+            </div>
+            <div class="row chart-list">
+                <div class="col-sm-3 list-content">
+                    <strong class="rank rank-first">NO.1</strong>
+                    <a href="/movies/detail-view/?midx=81749">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81749/81749_185.jpg" alt="어벤져스: 엔드게임 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-12">12세 이상</span>
+                            </span>
+                            <strong class="no1">1위</strong>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">어벤져스: 엔드게임</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>28.4%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">97%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                2019.04.24 
+                                <span>개봉</span>
+                                
+                            </strong>
+                        </span>
+                        <span class="like"> 
+                            <button class="btn-like" value="81749">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>95,006</i><span>명이 선택</span></strong> 
+                                <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-3 list-content">
+                    <strong class="rank">NO.2</strong>
+                    <a href="/movies/detail-view/?midx=81745">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81745/81745_185.jpg" alt="악인전 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-19">청소년 관람불가</span>
+                            </span>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">악인전</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>14.0%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">96%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                2019.05.15 
+                                <span>개봉</span>
+                            </strong>
+                        </span>
+                        
+                        <span class="like"> 
+                            <button class="btn-like" value="81745">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>5,174</i><span>명이 선택</span></strong> 
+                                <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-3 list-content">
+                    <strong class="rank">NO.3</strong>
+                    <a href="/movies/detail-view/?midx=81745">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81745/81745_185.jpg" alt="악인전 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-19">청소년 관람불가</span>
+                            </span>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">악인전</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>14.0%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">96%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                2019.05.15 
+                                <span>개봉</span>
+                            </strong>
+                        </span>
+                        
+                        <span class="like"> 
+                            <button class="btn-like" value="81745">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>5,174</i><span>명이 선택</span></strong> 
+                                <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-3 list-content">
+                    <strong class="rank">NO.4</strong>
+                    <a href="/movies/detail-view/?midx=81745">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81745/81745_185.jpg" alt="악인전 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-19">청소년 관람불가</span>
+                            </span>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">악인전</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>14.0%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">96%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                2019.05.15 
+                                <span>개봉</span>
+                            </strong>
+                        </span>
+                        
+                        <span class="like"> 
+                            <button class="btn-like" value="81745">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>5,174</i><span>명이 선택</span></strong> 
+                                <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row chart-list">
+                <div class="col-sm-3 list-content">
+                    <strong class="rank">NO.5</strong>
+                    <a href="/movies/detail-view/?midx=81745">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81745/81745_185.jpg" alt="악인전 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-19">청소년 관람불가</span>
+                            </span>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">악인전</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>14.0%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">96%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                2019.05.15 
+                                <span>개봉</span>
+                            </strong>
+                        </span>
+                        
+                        <span class="like"> 
+                            <button class="btn-like" value="81745">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>5,174</i><span>명이 선택</span></strong> 
+                                <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-3 list-content">
+                    <strong class="rank">NO.6</strong>
+                    <a href="/movies/detail-view/?midx=81745">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81745/81745_185.jpg" alt="악인전 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-19">청소년 관람불가</span>
+                            </span>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">악인전</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>14.0%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">96%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                2019.05.15 
+                                <span>개봉</span>
+                            </strong>
+                        </span>
+                        
+                        <span class="like"> 
+                            <button class="btn-like" value="81745">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>5,174</i><span>명이 선택</span></strong> 
+                                <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-3 list-content">
+                    <strong class="rank">NO.7</strong>
+                    <a href="/movies/detail-view/?midx=81745">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81745/81745_185.jpg" alt="악인전 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-19">청소년 관람불가</span>
+                            </span>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">악인전</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>14.0%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">96%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                2019.05.15 
+                                <span>개봉</span>
+                            </strong>
+                        </span>
+                        
+                        <span class="like"> 
+                            <button class="btn-like" value="81745">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>5,174</i><span>명이 선택</span></strong> 
+                                <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-3 list-content">
+                    <strong class="rank">NO.8</strong>
+                    <a href="/movies/detail-view/?midx=81745">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81745/81745_185.jpg" alt="악인전 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-19">청소년 관람불가</span>
+                            </span>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">악인전</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>14.0%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">96%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                2019.05.15 
+                                <span>개봉</span>
+                            </strong>
+                        </span>
+                        
+                        <span class="like"> 
+                            <button class="btn-like" value="81745">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>5,174</i><span>명이 선택</span></strong> 
+                                <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row chart-list">
+                <a href="http://ad.cgv.co.kr/click/CGV/CGV_201401/sub@SponsorBar_980?ads_id=38576&amp;creative_id=51008&amp;click_id=67598&amp;event=" target="_blank"><img src="http://adimg.cgv.co.kr/images/201904/Godzilla/0517_980x90.jpg" width="1080" height="90" border="0" alt="광고-고질라킹오브몬스터"></a>
+            </div>
+            <div class="row chart-list">
+                <a href="http://section.cgv.co.kr/event/running/SimpleEventZone.aspx?sidx=11"><img src="http://img.cgv.co.kr/R2014/images/main/phototicket_978_223.jpg" width="1080" alt="영화를 영원히 추억하는 방법. CGV 포토티켓"></a>
+            </div>
+        </div>
+<%@include file="../../common/footer.jsp" %>
+</body>
+</html>

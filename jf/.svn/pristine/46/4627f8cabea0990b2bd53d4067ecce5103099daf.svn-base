@@ -1,0 +1,115 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/jf/resources/css/bootstrap.css">
+    <link rel="stylesheet" href="/jf/resources//bootstrap/css/mycgv.css">
+</head>
+
+<body>
+    <%@include file="../../common/navigation.jsp" %>
+    <div class="container-fluid bg-bricks main bg-bricks backimg"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 mycgv-info"></div>
+            <div class="row info-contents">
+                <div class="col-sm-2">
+                    <div class="profile-photo">
+                        <img src="" alt="프로필사진">
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="info-content2">
+                        <strong id="info-name">${LOGINMEMBER.name }</strong>님
+                        <strong id="info-id"> 사용자 닉네임 : ${LOGINMEMBER.nickName }</strong>
+                    </div>
+                    <div class="info-content3">
+                        <strong id="info-info">phone : ${LOGINMEMBER.phone }</strong>
+                        <strong id="info-info">e-mail : ${LOGINMEMBER.email }</strong>
+                        <strong id="info-info">birth : ${LOGINMEMBER.birth }</strong>
+                    </div>
+                    <div class="info-content4 info-ul">
+                        <strong id="my-movie">&lt;자주가는 극장></strong>
+                        <ul>
+                            <li>종로 피카디리1958</li>
+                            <li>서울 천호 CGV</li>
+                            <li>서울 용산 CGV</li>
+                            <li>서울 강남 CGV</li>
+                            <li>창원 CGV</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 80px;">
+            <div class="col-sm-10 col-sm-offset-1">
+                <form action="questionlist.jf" class="form-inline">
+                    <select name="opt" style="height:28px;">
+                        <option value="title" ${param.opt eq 'question_title' ? 'selected' : '' }> 문의 제목</option>
+                        <option value="theaterName" ${param.opt eq 'theater_name' ? 'selected' : '' }> 문의 CGV</option>
+                    </select>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" placeholder="검색어입력" />
+                        <button type="submit" class="btn btn-primary">검색</button>
+                    </div>
+                </form>
+                <div class="text-right">
+                    <a href="questionlist.jf?&pno=${param.pno }" class="btn-sm btn-danger">선택삭제</a>
+                </div>
+                <hr />
+                <table class="table">
+                    <thead>
+                        <tr class="success">
+                            <th><input type="checkbox" />번호</th>
+                            <th>문의CGV</th>
+                            <th>제목</th>
+
+                            <th>등록일</th>
+                            <th>답변상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="question" items="${questions }">
+                            <tr>
+                                <td><input type="checkbox" name="questionno" />${question.no }</td>
+                                <td><a href="questionanserform.jf?pno=${param.pno }&qno=${question.no }">${question.theaterName }</a></td>
+                                <td>${question.title }</td>
+
+                                <td>${question.createDate }</td>
+                                <td>${question.status }</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <ul class="pagination">
+                            <li><a href="">&laquo;</a></li>
+                            <c:forEach var="b" begin="1" end="${no }">
+                                <li class="${param.pno eq b? 'active' : '' }"><a href="questionlist.jf?pno=${b}">${b}</a></li>
+                            </c:forEach>
+                            <li><a href="">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <a href="questiondetail.jf?pno=${param.pno}" class="btn-sm btn-success">문의등록하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%@include file="../../common/footer.jsp" %>
+</body>
+
+</html>

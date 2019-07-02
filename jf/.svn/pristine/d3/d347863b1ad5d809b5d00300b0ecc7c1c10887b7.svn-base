@@ -1,0 +1,74 @@
+<%@page import="kr.co.hta.util.DateUtils"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.co.hta.movies.dao.MovieDao"%>
+<%@page import="kr.co.hta.vo.Movie"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>일반 평점 > 평점 > ${movie.korTitle }</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/main.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/header.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+@media ( min-width : 768px) {
+	.container {
+		width: 750px;
+	}
+}
+
+@media ( min-width : 1022px) {
+	.container {
+		width: 1080px;
+	}
+}
+</style>
+</head>
+
+<body>
+	<%@include file="../../common/navigation.jsp" %>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <h1>평점</h1>
+                </div>
+                <div class="col-sm-4 col-sm-offset-6 GPA_header">
+                    <a href=""><span class="GPA GPA1">일반평점<span class="glyphicon glyphicon-play"></span></span></a>
+                    <a href=""><span class="GPA GPA2">내가 쓴 평점</span></a>
+                </div>
+            </div>
+            <div class="row GPA_main">
+               	<c:forEach var="movie" items="${movies }">
+	                <div class="col-md-3 imgs">
+	                    <div class="thumbnail ${(empty param.mno ? 21 : param.mno) eq movie.no ? 'thumbnail_active' : '' }">
+	                        <a href="gpa.jf?mno=${movie.no }&rno=1"><img class="GPA_main_posterimgs" src="/jf/photos/${movie.poster }" style=""></a>
+	                        <div class="caption">
+	                            <h4 class="" id="${(empty param.mno ? 21 : param.mno) eq movie.no ? 'thumbnail_active' : '' }">${movie.korTitle}</h4>
+	                            <p class="" id="${(empty param.mno ? 21 : param.mno) eq movie.no ? 'thumbnail_active' : '' }">예매율:${movie.reservationRate }%</p>
+	                            <p class="" id="${(empty param.mno ? 21 : param.mno) eq movie.no ? 'thumbnail_active' : '' }"><fmt:formatDate value="${movie.releaseDate }"/> 개봉</p>
+	                            <div class="likes " id="${(empty param.mno ? 21 : param.mno) eq movie.no ? 'thumbnail_active' : '' }"><span class="glyphicon glyphicon-heart "></span>${movie.wishList }
+	                                <a class="reservation_img" id="${(empty param.mno ? 21 : param.mno) eq movie.no ? 'thumbnail_active' : '' }" href=""><span class="glyphicon glyphicon-check reservation_img " id="${param.mno eq movie.no ? 'thumbnail_active' : '' }"></span>예매하기</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
+            </div>
+            
+            <div class="row GPA_main_2">
+            <%@include file="../../common/GPAcommon.jsp" %>
+                <div class="col-sm-2">
+                    <img src="http://adimg.cgv.co.kr/images/201904/Gangster/0515_160x300_1.jpg" alt="">
+                    <img src="http://adimg.cgv.co.kr/images/201808/citi/0516_160x300.jpg" alt="">
+                </div>
+            </div>
+			<%@include file="../../common/pagination.jsp" %>
+        </div>
+        <%@ include file="../../common/footer.jsp" %>
+</body></html>

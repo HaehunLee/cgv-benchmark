@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+		
+	<select id="getAllTheaters" resultClass="Theater">
+		select 
+			THEATER_NO no,
+			THEATER_NAME name,
+			THEATER_LOCATION location, 
+			THEATER_TEL tel, 
+			THEATER_ROOM room,
+			THEATER_SEAT seat,
+			THEATER_TRAFFIC_INFO trafficInfo,
+			THEATER_PARKING_INFO parkingInfo,
+			THEATER_CITY city,
+			THEATER_PHOTO photo
+		from
+			jf_theaters
+	</select>
+	<select id="getTheaterByNo" resultClass="Theater">
+		select 
+			THEATER_NO no,
+			THEATER_NAME name,
+			THEATER_LOCATION location, 
+			THEATER_TEL tel, 
+			THEATER_ROOM room,
+			THEATER_SEAT seat,
+			THEATER_TRAFFIC_INFO trafficInfo,
+			THEATER_PARKING_INFO parkingInfo,
+			THEATER_CITY city,
+			THEATER_PHOTO photo
+		from
+			jf_theaters
+		where theater_no = #value#
+	</select>
+	<select id="getAllCities" resultClass="String">
+		select distinct theater_city
+		from jf_theaters
+	</select>
+	<select id="getTheaterByCity" parameterClass="String" resultClass="Theater">
+		select 
+			THEATER_NO no,
+			THEATER_NAME name,
+			THEATER_LOCATION location, 
+			THEATER_TEL tel, 
+			THEATER_ROOM room,
+			THEATER_SEAT seat,
+			THEATER_TRAFFIC_INFO trafficInfo,
+			THEATER_PARKING_INFO parkingInfo,
+			THEATER_CITY city,
+			THEATER_PHOTO photo
+		from
+			jf_theaters
+		where theater_city like ('%'||#value#||'%')
+	</select>
+	
+	<select id="getSeatsByTheaterNo" parameterClass="int" resultClass="int">
+		select
+			sum(b.room_seat)
+		from
+			jf_theaters a, jf_screening_rooms b
+		where
+			a.theater_no = b.theater_no
+		and
+			a.theater_no = #value#
+		group by
+			b.theater_no
+	</select>
+	
+	<select id="getRoomsByTheaterNo" parameterClass="int" resultClass="int">
+		select
+			count(*)
+		from 
+			jf_theaters a, jf_screening_rooms b
+		where 
+			a.theater_no = b.theater_no
+		and 
+			a.theater_no = #value#
+		group by 
+			a.theater_no			
+	</select>
+	
+	<select id="getMonthsByTheaterNo" parameterClass="int" resultClass="String">
+		select to_char(a.screening_date,'mm-dd')
+		from jf_screenings a, jf_screening_rooms b
+		where a.room_no = b.room_no
+		and b.theater_no = #value#
+		group by to_char(a.screening_date,'mm-dd')
+		order by to_char(a.screening_date,'mm-dd') asc 
+	</select>
+</sqlMap>

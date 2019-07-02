@@ -1,0 +1,20 @@
+package kr.co.hta.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class MainController {
+
+	@RequestMapping("/main.jf")
+	public ModelAndView main(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("main.jsp");
+
+		return mav;
+	}
+}

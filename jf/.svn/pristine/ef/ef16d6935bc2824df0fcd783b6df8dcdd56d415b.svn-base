@@ -1,0 +1,37 @@
+package kr.co.hta.vo;
+
+import java.util.Date;
+
+public class Moviediary {
+	private int diaryNo;
+	private String diaryContents;
+	private Date diaryCreateDate;
+	private String memberId;
+	
+	public int getDiaryNo() {
+		return diaryNo;
+	}
+	public void setDiaryNo(int diaryNo) {
+		this.diaryNo = diaryNo;
+	}
+	public String getDiaryContents() {
+		return diaryContents;
+	}
+	public void setDiaryContents(String diaryContents) {
+		this.diaryContents = diaryContents;
+	}
+	public Date getDiaryCreateDate() {
+		return diaryCreateDate;
+	}
+	public void setDiaryCreateDate(Date diaryCreateDate) {
+		this.diaryCreateDate = diaryCreateDate;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	
+	
+}

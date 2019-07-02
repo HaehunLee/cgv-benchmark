@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="/jf/resources/bootstrap/css/footer.css">
+</head>
+<body>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- Footer -->
+	<section id="footer" class="footer">
+		<div class="container">
+			<div class="foot sect-smuse sect-cinfo policy">
+				<ul>
+					<li><a href="http://corp.cgv.co.kr/company/" target="_blank">회사소개</a></li>
+					<li><a href="http://corp.cgv.co.kr/company/ir/financial/financial_list.aspx" target="_blank">IR</a></li>
+					<li><a href="http://corp.cgv.co.kr/company/recruit/step/default.aspx" target="_blank">채용정보</a></li>
+					<li><a href="http://corp.cgv.co.kr/company/advertize/ad_Default.aspx" target="_blank">광고/프로모션문의</a></li>
+                    <li><a href="http://corp.cgv.co.kr/company/advertize/af_default.aspx" target="_blank">제휴문의</a></li>
+                    <li><a href="http://corp.cgv.co.kr/company/advertize/bp_insert.aspx" target="_blank">출점문의</a></li>			
+					<li><a href="http://www.cgv.co.kr/rules/service.aspx">이용약관</a></li>
+                    <li><a href="http://www.cgv.co.kr/rules/organized.aspx">편성기준</a></li>
+					<li><a href="http://www.cgv.co.kr/rules/privacy.aspx" class="empha-red">개인정보처리방침</a></li>
+					<li><a href="http://www.cgv.co.kr/rules/disclaimer.aspx">법적고지</a></li>
+					<li><a href="http://www.cgv.co.kr/rules/emreject.aspx">이메일주소무단수집거부</a></li>
+					<li><a href="http://www.cgv.co.kr/company/coexist.aspx">상생경영</a></li>
+					<li><a href="http://www.cgv.co.kr/guide/sitemap.aspx">사이트맵</a></li>
+				</ul>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+					<ul class="list-unstyled list-inline social text-center">
+						<li class="list-inline-item"><a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="http:/www.instargram.com"><i class="fa fa-instagram"></i></a></li>
+						<li class="list-inline-item"><a href="http://www.google.com"><i class="fa fa-google-plus"></i></a></li>
+					</ul>
+				</div>
+			</div>	
+			<div class="row">
+			    <div class="col-xs-2 col-sm-2 col-md-2">
+			        <img class="cgv-logo" src="../../../photos/CJ_CGV_logo.jpg">
+			    </div> 
+				<div class="col-xs-10 col-sm-10 col-md-10 text-center">
+                    <p id="address">(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)
+					대표이사 : 최병환사업자등록번호 : 104-81-45690 <br />
+					통신판매업신고번호 : 2017-서울용산-0662 개인정보보호 책임자 : 정종민대표이메일 : cjcgvmaster@cj.netCGV<br />
+                    고객센터 : 1544-1122
+				    </p>
+					<p class="h6" style="color: black;">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+				</div>
+			</div>	
+		</div>
+	</section>
+	<!-- ./Footer -->
+</body>
+</html>

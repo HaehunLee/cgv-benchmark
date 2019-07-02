@@ -1,0 +1,51 @@
+package kr.co.hta.movies.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import com.ibatis.sqlmap.client.SqlMapClient;
+
+import kr.co.hta.util.IbatisUtils;
+import kr.co.hta.vo.CityCount;
+import kr.co.hta.vo.Movie;
+import kr.co.hta.vo.Ticketing;
+
+public class ReservationDao {
+
+	private SqlMapClient sqlMap = IbatisUtils.getSqlMap();
+	
+	// 은정이
+	@SuppressWarnings("unchecked")
+	public List<Movie> getAllMoviesRankByResRate() throws Exception {
+		return (List<Movie>) sqlMap.queryForList("getAllMoviesRankByResRate");
+	}
+	
+	public Movie getRank1MovieByResRate() throws Exception {
+		return (Movie) sqlMap.queryForObject("getRank1MovieByResRate");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ticketing> getTicketingsByMovieNo(int movieNo) throws Exception {
+		return (List<Ticketing>) sqlMap.queryForList("getTicketingsByMovieNo", movieNo);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<CityCount> getCountCitiesByMovieNo(int movieNo) throws Exception {
+		return (List<CityCount>) sqlMap.queryForList("getCountCitiesByMovieNo", movieNo);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getTheaterNameByMnoCity(Map<String, Object> map) throws Exception {
+		return (List<String>) sqlMap.queryForList("getTheaterNameByMnoCity", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getDatesByMnoTname(Map<String, Object> map) throws Exception {
+		return (List<String>) sqlMap.queryForList("getDatesByMnoTname", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ticketing> getScreeningsByMDT(Map<String, Object> map) throws Exception {
+		return (List<Ticketing>) sqlMap.queryForList("getScreeningsByMDT", map);
+	}
+}

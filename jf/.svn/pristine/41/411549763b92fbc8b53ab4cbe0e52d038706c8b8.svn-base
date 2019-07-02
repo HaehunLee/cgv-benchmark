@@ -1,0 +1,21 @@
+package kr.co.hta.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class TheaterController {
+	@RequestMapping("/cgv/cgvtheaters.jf")
+	public ModelAndView cgvTheaters(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/CGVTheater/CGVtheater.jsp");
+		
+		int tno = Integer.parseInt(req.getParameter("tno"));
+		
+		return mav;
+	}
+}

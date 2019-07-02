@@ -1,0 +1,28 @@
+package kr.co.hta.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class MovieController {
+
+	@RequestMapping("/movie/chart.jf")
+	public ModelAndView chart(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/movie/chart.jsp");
+
+		return mav;
+	}
+	
+	@RequestMapping("/movie/finder.jf")
+	public ModelAndView finder(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/movie/finder.jsp");
+
+		return mav;
+	}
+}

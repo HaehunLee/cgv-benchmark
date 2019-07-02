@@ -1,0 +1,311 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>${movie.korTitle }&lt; 영화상세</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/GPA.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/header.css">
+<link rel="stylesheet"
+	href="/jf/resources/bootstrap/css/moviedetail.css">
+<script type="text/javascript"
+	src="/jf/resources/bootstrap/js/gpaHeader.js"></script>
+<style>
+.detail_4_likes_1 {
+	position: relative;
+	display: inline-block;
+	bottom: 10px;
+	color: red !important;
+}
+</style>
+</head>
+
+<body>
+	<!-- header 시작-->
+	<%@include file="../../common/navigation.jsp"%>
+	<!-- header 끝-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<h1 class="detail_1_title">영화상세</h1>
+			</div>
+		</div>
+		<hr class="detail_1_hr">
+		<div class="row detail_main_row">
+			<div class="col-sm-3">
+				<a href=""><img class="detail_2_movieposter"
+					src="/jf/photos/movieposters/${movie.poster }" alt=""></a>
+			</div>
+			<div class="col-sm-9">
+				<div class="row">
+					<div class="col-sm-6">
+						<span class="detail_2_korTitle">${movie.korTitle }</span> <span
+							class="detail_2_nowShowing"> <img
+							src="/jf/photos/NowShowing.PNG" alt="" />
+						</span>
+					</div>
+				</div>
+				<div class="row detail_2_blank_1">
+					<div class="col-sm-12 detail_2_engTitle">
+
+						<p class="detail_2_engTitle_p">${movie.engTitle }</p>
+					</div>
+				</div>
+				<div class="up">
+					<div class="row">
+						<div class="col-sm-2 detail_3_reservationRatiodiv text-center">
+							<span class="detail_3_reservationRatio">예매율
+								${movie.reservationRate }%</span>
+							<div class="theater_border_right_hr"></div>
+						</div>
+
+						<div class="col-sm-4 detail_3_eggpercentdiv">
+							<img class="detail_3_egg" src="/jf/photos/GREAT.PNG" alt="">
+							<span class="detail_3_eggpercentandviewer">
+								${movie.goldenEgg }% (실관람객 : ${movie.realMembers }명) </span>
+						</div>
+					</div>
+					<hr class="detail_3_hr">
+					<div class="row">
+						<div class="col-sm-8 detail_4_info">
+							<p>감독: ${movie.director }:${movie.genre }/ 기본:
+								${movie.ageLimit }세 이상, ${movie.runningTime }분, ${movie.country }</p>
+							<p>개봉: <fmt:formatDate value="${movie.releaseDate }"/></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 ">
+							<span class="glyphicon glyphicon-heart detail_4_likes_1"></span>
+							<span class="detail_4_likes_2">: ${movie.wishList }</span> <span
+								class="detail_4_likes_img"><a href="/jf/reservation/reservation.jf?mno=${movie.no}"><img
+									src="/jf/photos/reservationImg.PNG" alt=""></a> </span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="row main_detail_row">
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<p class="">
+							<span class="detail_5_info"> &lt; <a href="">주요정보</a> | <a
+								href="">트레일러</a> | <a href="">스틸컷</a> | <a href="">평점/리뷰</a> | <a
+								href="">상영시간표</a>&gt;
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="row main_detail_row_2">
+					<div class="col-sm-12 detail_5_movie_explain">
+						<p>${movie.info }</p>
+						<!-- 						<p>인피니티 워 이후 절반만 살아남은 지구</p>
+						<p>마지막 희망이 된 어벤져스</p>
+						<p>먼저 떠난 그들을 위해 모든 것을 걸었다!</p>
+						<p>
+							<strong>위대한 어벤져스</strong>
+						</p>
+						<p>
+							<strong>운명을 바꿀 최후의 전쟁이 펼쳐진다</strong>
+						</p> -->
+					</div>
+				</div>
+				<div class="row detail_5_row">
+					<div class="col-sm-12">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th class="text-center">매력포인트</th>
+									<th class="text-center">성별 예매 분포</th>
+									<th class="text-center">연령별 예매 분포</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center">
+									<td><div id="chart_div2"></div></td>
+									<td><img src="/jf/photos/genderRatio.png" alt=""></td>
+									<td><img src="/jf/photos/ageRatio.PNG" alt=""></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 detail_6_event_img">
+						<img
+							src="http://adimg.cgv.co.kr/images/201808/citi/0516_800x90.jpg"
+							alt="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 detail_6_trailer_info">
+						<span class="detail_6_trailer_info_1"><strong>트레일러</strong></span><span
+							class="detail_6_trailer_info_2">5건</span> <a href=""><span
+							class="glyphicon glyphicon-zoom-in"></span></a>
+					</div>
+				</div>
+				<div class="row youtube_videos">
+					<div class="col-sm-4 youtube_video_div">
+						<iframe width="316px" height="202px"
+							src="https://www.youtube.com/embed/WOLoiv40XS0" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen class="youtube_video"></iframe>
+					</div>
+					<div class="col-sm-4 youtube_video_div">
+						<iframe width="316" height="202"
+							src="https://www.youtube.com/embed/ybhXVSAdIRE" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen class="youtube_video"></iframe>
+					</div>
+					<div class="col-sm-4 youtube_video_div">
+						<iframe width="316" height="202"
+							src="https://www.youtube.com/embed/TaCE5sAigGQ" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen class="youtube_video"></iframe>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<a href="">
+							<p>
+								<img src="/jf/photos/HD.PNG" alt=""> 아시아 팬이벤트 하이라이트 영상
+							</p>
+						</a>
+						<p class="detail_7_date">2019.04.23</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="">
+							<p>
+								<img src="/jf/photos/HD.PNG" alt=""> 60초 파이널 예고편
+							</p>
+						</a>
+						<p class="detail_7_date">2019.04.05</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="">
+							<p>
+								<img src="/jf/photos/HD.PNG" alt=""> 1차 예고편
+							</p>
+						</a>
+						<p class="detail_7_date">2019.03.27</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 detail_6_trailer_info">
+						<span class="detail_6_trailer_info_1"><strong>스틸컷</strong></span><span
+							class="detail_6_trailer_info_2"><strong>1</strong>/127건</span> <a
+							href=""><span class="glyphicon glyphicon-zoom-in"></span></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1 detail_6_steelcut_img">
+						<img
+							src="http://img.cgv.co.kr/Movie/Thumbnail/StillCut/000081/81749/81749166608_727.jpg"
+							alt="">
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2 detail_5_sideAD">
+				<ul>
+					<li><a href=""><img src="/jf/photos/detail_1.jpg" alt=""></a></li>
+					<li><a href=""><img
+							src="http://adimg.cgv.co.kr/images/201808/citi/0516_160x300.jpg"
+							alt=""></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row GPA_main_2">
+			<input id="forlikes-from" type="hidden" name="from" value="detail" />
+			<%@include file="../../common/GPAcommon.jsp"%>
+		</div>
+		<div class="row text-center">
+			<div class="col-sm-10">
+				<ul class="pagination">
+					<li><a href="">&laquo</a></li>
+					<c:forEach var="a" begin="1" end="${totalreviewsCount }">
+						<li id="${a}" class="gpa_pagination_number"><a
+							onclick="showReviews(event,0,${empty param.mno ? rank1movie : param.mno},${a})"
+							href="#">${a}</a></li>
+					</c:forEach>
+					<li><a href="">&raquo</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script>
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart() {
+		var production = ${fivePoint.production};
+		var story = ${fivePoint.story};
+		var ost = ${fivePoint.ost};
+		var actor = ${fivePoint.actor};
+		var beauty = ${fivePoint.beauty};
+		
+        // Create the data table.
+        var data = google.visualization.arrayToDataTable([
+            ['힝', '%', {
+                role: 'style'
+            }],
+            ['감독연출', production, 'color: #A30096; opacity: 0.8'], // RGB value
+            ['스토리', story, 'color: #00A626; opacity: 0.8'], // English color name
+            ['OST', ost, 'color: #FF9E00; opacity: 0.8'],
+            ['배우연기', actor, 'color: #E31F00; opacity: 0.8'], // CSS-style declaration
+            ['영상미', beauty, 'color: #4539D0; opacity: 0.8'], // CSS-style declaration
+        ]);
+
+        // Set chart options
+        var options = {
+        	backgroundColor : '#FBFFEC',
+            legend: {
+                position: 'none'
+            },
+            width: 330,
+            height: 200,
+            
+            chartArea: {
+                width: '50%'
+            },
+            hAxis: {
+                title: '영화평가지수(%)',
+                minValue: 0,
+                maxValue: 100,
+            }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+        chart2.draw(data,options);
+    }
+    </script>
+</body>
+</html>

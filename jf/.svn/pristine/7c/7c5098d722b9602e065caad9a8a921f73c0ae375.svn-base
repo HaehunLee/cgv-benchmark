@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+
+	<select id="selectSearchNoticesCount" parameterClass="map" resultClass="int">
+		select count(*)
+		from (select
+				row_number() over(order by notice_no desc) as row_no		
+				,NOTICE_NO				no 
+				,NOTICE_TITLE			title
+				,NOTICE_CREATE_DATE		 createDate
+				,NOTICE_VIEWS			views
+				,NOTICE_CONTENT			contents
+			from JF_NOTICES
+			where NOTICE_TITLE like '%' || #keyword# || '%')
+		where (row_no >= #begin# and row_no &lt;= #end#)
+		
+	</select>	
+	<select id="selectSearchNotices" parameterClass="map" resultClass="Notice">
+		select
+			no
+			,title
+			,createDate
+			,views
+			,contents
+		from (select
+				row_number() over(order by notice_no desc) as row_no		
+				,NOTICE_NO				no 
+				,NOTICE_TITLE			title
+				,NOTICE_CREATE_DATE		 createDate
+				,NOTICE_VIEWS			views
+				,NOTICE_CONTENT			contents
+			from JF_NOTICES
+			where NOTICE_TITLE like '%' || #keyword# || '%')
+		where (row_no >= #begin# and row_no &lt;= #end#)
+		
+	</select>	
+		
+	<insert id="insertNotice" parameterClass="Notice">
+		insert into jf_notices (
+			NOTICE_NO
+			,NOTICE_TITLE
+			,NOTICE_CONTENT
+			,NOTICE_CREATE_DATE
+			,NOTICE_VIEWS)
+		VALUES 
+			(jf_notice_seq.nextval, #title#, #contents#, sysdate, 0)
+	</insert>
+	
+	  
+	<select id="selectAllNotice" resultClass="Notice">
+		select
+			NOTICE_NO				no
+			,NOTICE_TITLE			title
+			,NOTICE_CREATE_DATE		 createDate
+			,NOTICE_VIEWS			views
+			,NOTICE_CONTENT			contents
+		from JF_NOTICES
+		order by NOTICE_NO
+	</select>
+
+	<select id="selectNoticeByNo" parameterClass="int" resultClass="Notice">
+		select
+			NOTICE_NO				no
+			,NOTICE_TITLE			title
+			,NOTICE_CREATE_DATE		 createDate
+			,NOTICE_VIEWS			views
+			,NOTICE_CONTENT			contents
+		from JF_NOTICES
+		where NOTICE_NO = #value#
+	</select>
+	
+	<select id="selectNoticeByRange" parameterClass="map" resultClass="Notice">
+		select
+			no
+			,title
+			,createDate
+			,views
+			,contents
+		from (select
+				row_number() over(order by notice_no desc) as row_no		
+				,NOTICE_NO				no 
+				,NOTICE_TITLE			title
+				,NOTICE_CREATE_DATE		 createDate
+				,NOTICE_VIEWS			views
+				,NOTICE_CONTENT			contents
+		from JF_NOTICES)
+		where (row_no >= #begin# and row_no &lt;= #end#)
+	</select>
+	
+	<select id="allCount" resultClass="int">
+		select
+			count(*)
+		from JF_NOTICES
+	</select>
+	
+	
+	
+
+</sqlMap>

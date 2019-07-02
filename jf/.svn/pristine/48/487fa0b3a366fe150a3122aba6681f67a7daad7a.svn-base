@@ -1,0 +1,30 @@
+package kr.co.hta.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class ReservationController {
+
+	@RequestMapping("/reservation/reservation.jf")
+	public ModelAndView reservation(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/reservation/reservation.jsp");
+
+		return mav;
+	}
+	
+	@RequestMapping("/reservation/movietimetable.jf")
+	public ModelAndView movietimetable(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/reservation/movietimetable.jsp");
+
+		return mav;
+	}
+}

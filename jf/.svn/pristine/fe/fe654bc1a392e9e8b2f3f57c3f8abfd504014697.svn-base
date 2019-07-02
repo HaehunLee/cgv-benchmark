@@ -1,0 +1,21 @@
+package kr.co.hta.vo;
+
+public class RoomDetailInfo {
+	private String times;
+	private int leftSeat;
+	
+	public String getTimes() {
+		return times;
+	}
+	public void setTimes(String times) {
+		this.times = times;
+	}
+	public int getLeftSeat() {
+		return leftSeat;
+	}
+	public void setLeftSeat(int leftSeat) {
+		this.leftSeat = leftSeat;
+	}
+	
+	
+}

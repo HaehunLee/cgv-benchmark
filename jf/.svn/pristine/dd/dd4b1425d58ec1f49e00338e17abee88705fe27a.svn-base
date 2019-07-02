@@ -1,0 +1,109 @@
+package kr.co.hta.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import kr.co.hta.movies.dao.MemberDao;
+import kr.co.hta.movies.dao.MovieDao;
+import kr.co.hta.movies.dao.MyTheaterDao;
+import kr.co.hta.movies.dao.TheaterDao;
+import kr.co.hta.vo.Member;
+import kr.co.hta.vo.Movie;
+import kr.co.hta.vo.MyTheater;
+import kr.co.hta.vo.Theater;
+import kr.co.hta.vo.WishList;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+import kr.co.jhta.mvc.view.JSONView;
+
+@Controller
+public class MycgvController {
+	
+	MemberDao memberDao = new MemberDao();
+	MovieDao movieDao = new MovieDao();
+	MyTheaterDao myTheaterDao = new MyTheaterDao();
+	TheaterDao theaterDao = new TheaterDao();
+
+	@RequestMapping("/member/mycgvpage.jf")
+	public ModelAndView MyCgvwishList(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/member/mycgv.jsp");
+		HttpSession session = req.getSession();
+		Member member = (Member) session.getAttribute("LOGINMEMBER");
+		
+		if(member == null) {
+			mav.setViewName("redirect:login.jf?result=default");
+			return mav;
+		}
+		String memberId = member.getId();
+		List<WishList> wishLists= memberDao.getWishListById(memberId);
+		List<Movie> movies = new ArrayList<Movie>();
+		int wishListsCount = memberDao.getCountWishListById(memberId);
+		
+		for(WishList wishList : wishLists) {
+			Movie movie = new Movie();
+			int movieNo = wishList.getMovieNo();
+			movie = movieDao.getMovieByNo(movieNo);
+			movies.add(movie);
+		}
+		
+		
+		mav.addAttribute("wishLists", wishLists);
+		mav.addAttribute("wishListsCount", wishListsCount);
+		mav.addAttribute("movies", movies);
+		
+		
+		// 자주가는 극장
+		List<MyTheater> MyTheaters = (List<MyTheater>) myTheaterDao.selectMyTheatersById(memberId);
+		mav.addAttribute("MyTheaters", MyTheaters);
+		
+		
+		// 도시명
+		List<String> cities = theaterDao.getAllCities();
+		mav.addAttribute("cities", cities);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/member/showTheater.jf")
+	public ModelAndView showTheaters(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setView(new JSONView());
+
+		String city = req.getParameter("city");
+		List<Theater> theaters = myTheaterDao.getTheatersByCity(city);
+		
+		
+		mav.addAttribute("theaters", theaters);
+		return mav;
+	}
+	
+	@RequestMapping("/member/addMyTheater.jf")
+	public ModelAndView addMyTheater(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setView(new JSONView());
+
+		int tno  = Integer.parseInt(req.getParameter("theater"));
+		HttpSession session = req.getSession();
+		Member member = (Member) session.getAttribute("LOGINMEMBER");
+		String memberId = member.getId();
+	
+		MyTheater myTheater = new MyTheater();
+		
+		myTheater.setTheaterNo(tno);
+		myTheater.setMemberId(memberId);
+
+		myTheaterDao.addMyTheater(myTheater);
+		// ---------^^^^자주찾는극장 추가^^^------------
+		
+		List<MyTheater> MyThaters = myTheaterDao.selectMyTheatersById(memberId);
+		mav.addAttribute("MyTheates", MyThaters);
+		
+		return mav;
+	}
+}

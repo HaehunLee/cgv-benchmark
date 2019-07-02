@@ -1,0 +1,131 @@
+package kr.co.hta.controller;
+
+import java.sql.SQLIntegrityConstraintViolationException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.digest.MessageDigestAlgorithms;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import kr.co.hta.movies.dao.MemberDao;
+import kr.co.hta.vo.Member;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class MemberController {
+	
+	MemberDao memberDao = new MemberDao();
+
+	
+	@RequestMapping("/member/login.jf")
+	public ModelAndView login(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("semi/member/login.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/member/process_login.jf")
+	public ModelAndView processLogin(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String id = req.getParameter("userid");
+		String pwd = req.getParameter("userpwd");
+		Member member = memberDao.getMemberById(id);
+		
+		if(member == null) {
+			mav.setViewName("redirect:login.jf?result=fail");
+			return mav;
+		}
+		String digestPwd = new DigestUtils(MessageDigestAlgorithms.SHA_1).digestAsHex(pwd);
+		if(!member.getPwd().equals(digestPwd)) {
+			mav.setViewName("redirect:login.jf?result=fail");
+			return mav;
+		}
+		
+		HttpSession session = req.getSession(); 		// HttpSession 객체 얻기
+		session.setAttribute("LOGINMEMBER", member);	// 세션객체에 사용자 정보 담기
+		mav.setViewName("redirect:/jf/main.jf");		// 메인페이지를 재요청하기
+		
+		return mav;
+	}
+	@RequestMapping("/member/process_logout.jf")
+	public ModelAndView processLogout(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = req.getSession();
+		session.invalidate();
+		mav.setViewName("redirect:/jf/main.jf");
+		return mav;
+	}
+	
+	@RequestMapping("/member/register.jf")
+	public ModelAndView register(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/member/register.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/member/complete.jf")
+	public ModelAndView complete(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/member/complete.jsp");
+		return mav;
+	}
+	@RequestMapping("/member/process_register.jf")
+	public ModelAndView processRegister(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String saveDirectory = "C:\\project\\web_workspace\\jf\\WebContent\\photos\\memberPhotos";
+		MultipartRequest mr = new MultipartRequest(req, saveDirectory,1024*1024*10,"utf-8",new DefaultFileRenamePolicy());
+		
+		String id = mr.getParameter("userid");
+		String pwd = mr.getParameter("userpwd");
+		String name = mr.getParameter("username");
+		String nickName = mr.getParameter("usernickName");
+		String phone = mr.getParameter("userphone");
+		String email = mr.getParameter("useremail");
+		String birth = mr.getParameter("userbirth");
+		String gender = mr.getFilesystemName("usergender");
+		
+		String digestPwd = new DigestUtils(MessageDigestAlgorithms.SHA_1).digestAsHex(pwd);
+		
+		Member member = null;
+		member = memberDao.getMemberById(id);
+		
+		if(member == null) {
+			try {
+				member = new Member();
+				member.setId(id);
+				member.setPwd(digestPwd);
+				member.setName(name);
+				member.setNickName(nickName);
+				member.setPhone(phone);
+				member.setEmail(email);
+				member.setBirth(birth);
+				member.setGender(gender);
+				memberDao.insertMember(member);
+				
+				mav.setViewName("redirect:complete.jf");
+				
+			} catch (Exception e) {
+				mav.setViewName("redirect:register.jf?result=none");
+			}
+			return mav;
+		} else {
+			mav.setViewName("redirect:register.jf?result=fail");
+		}
+		return mav;
+	}
+	@RequestMapping("/member/wishlist.jf")
+	public ModelAndView wishList(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/member/wishList.jsp");
+		return mav;
+	}
+}

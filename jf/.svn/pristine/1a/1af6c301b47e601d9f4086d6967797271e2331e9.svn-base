@@ -1,0 +1,109 @@
+package kr.co.hta.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.hta.movies.dao.MovieDao;
+import kr.co.hta.movies.dao.ReviewDao;
+import kr.co.hta.vo.Movie;
+import kr.co.hta.vo.Review;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class ChartController {
+	
+	private MovieDao movieDao = new MovieDao();
+	private ReviewDao reviewDao = new ReviewDao();
+	
+	@RequestMapping("/movie/gpa.jf")
+	public ModelAndView a(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/gpa/gpa.jsp");
+		int mno = 0;
+		int rno = 0;
+		
+		try {
+			mno = Integer.parseInt(req.getParameter("mno"));
+		} catch (Exception e) {
+			mno = 21;
+		}
+		try {
+			rno = Integer.parseInt(req.getParameter("rno"));
+		} catch (Exception e) {
+			rno = 1;
+		}
+		
+		Movie movie = movieDao.getMovieByNo(mno);
+		String info = movie.getInfo();
+		info = info.replace("\r\n", "<br>");
+		movie.setInfo(info);
+		
+		List<Movie> movies = movieDao.setlect4MoviesRankByGpa();
+		
+		int begin = (rno-1)*8 +1;
+		int end = rno*8;
+		int reviewsCountByMovie = reviewDao.getReviewsCountByMovie(mno);
+		int totalreviewsCount = (int)Math.ceil((double)reviewsCountByMovie/8);
+		
+		int getGPAByMovie = reviewDao.getGPAByMovie(mno);
+		double newGoldenEggScore = (double)((double)getGPAByMovie/(double)(reviewsCountByMovie*5.0))*100.0;
+		int goldenEggScore = (int)newGoldenEggScore;
+		
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end",end);
+		map.put("movieNo", mno);
+		List<Review> reviews = reviewDao.getReviewsByRangeAndMovie(map);
+		
+		mav.addAttribute("reviews", reviews);
+		mav.addAttribute("movies", movies);
+		mav.addAttribute("movie", movie);
+		mav.addAttribute("totalreviewsCount", totalreviewsCount);
+		mav.addAttribute("reviewsCountByMovie", reviewsCountByMovie);
+		mav.addAttribute("goldenEggScore", goldenEggScore);
+		return mav;
+	}
+	
+	@RequestMapping("/movie/moviedetail.jf")
+	public ModelAndView movieDetail(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/moviedetail/detail.jsp");
+		int mno = Integer.parseInt(req.getParameter("mno"));
+		int rno = Integer.parseInt(req.getParameter("rno"));
+		
+		Movie movie = movieDao.getMovieByNo(mno);
+		List<Movie> movies = movieDao.setlect4MoviesRankByGpa();
+		int begin = (rno-1)*8 +1;
+		int end = rno*8;
+		int reviewsCountByMovie = reviewDao.getReviewsCountByMovie(mno);
+		int totalreviewsCount = (int)Math.ceil((double)reviewsCountByMovie/8);
+		
+		int getGPAByMovie = reviewDao.getGPAByMovie(mno);
+		
+		double newGoldenEggScore = (double)((double)getGPAByMovie/(double)(reviewsCountByMovie*5.0))*100.0;
+		int goldenEggScore = (int)newGoldenEggScore;
+		
+	
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end",end);
+		map.put("movieNo", mno);
+		List<Review> reviews = reviewDao.getReviewsByRangeAndMovie(map);
+		
+		mav.addAttribute("reviews", reviews);
+		mav.addAttribute("movies", movies);
+		mav.addAttribute("movie", movie);
+		mav.addAttribute("totalreviewsCount", totalreviewsCount);
+		mav.addAttribute("reviewsCountByMovie", reviewsCountByMovie);
+		mav.addAttribute("goldenEggScore", goldenEggScore);
+		return mav;
+	}
+	
+}

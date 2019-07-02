@@ -1,0 +1,5 @@
+package kr.co.hta.movies.dao;
+
+public class MoviediaryDAO {
+
+}

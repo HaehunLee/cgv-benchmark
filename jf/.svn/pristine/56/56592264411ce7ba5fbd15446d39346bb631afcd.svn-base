@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/GPA.css">
+
+<div class="col-sm-10">
+<div class="row">
+	<div class="col-sm-2 GPA3 GPA3_1 text-center">
+		실관람객 평점<span class="glyphicon glyphicon-play"></span>
+	</div>
+	<div class="col-sm-7 GPA3 GPA3_2 text-center">
+		관람일 포함 7일 이내 관람평을 남기시면 <span class="cjPoint">CJ ONE 20P</span>가 적립됩니다.
+	</div>
+	<div class="col-sm-3 GPA3 text-center GPA3_buttonDiv">
+		<button class="btn btn-danger btn-sm GPA3_button GPA3_button_1">평점작성</button>
+		<button class="btn btn-primary btn-sm GPA3_button GPA3_button_2">
+			내 평점<span class="glyphicon glyphicon-play"></span>
+		</button>
+	</div>
+</div>
+	<div class="row">
+		<div class="col-sm-12 GPA4_1">
+			<a href=""><strong>GOLDEN EGG지수 ?</strong></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3 GPA4_2 text-center">
+			<img src="/jf/photos/GREAT.PNG" alt="" class="GPA4_2_img">
+			<%--                             	<c:if test="${not empty goldenEggScore}">
+                            		<span class="GPA4_2_1">${goldenEggScore }%</span>
+                            	</c:if>
+                            	<c:if test="${0 eq goldenEggScore}">
+                            		<span class="GPA4_2_1">0%</span>
+                            	</c:if> --%>
+			<span class="GPA4_2_1">${goldenEggScore }%</span>
+		</div>
+		<div class="col-sm-5 GPA4_3 text-center">
+			<div class="h2">${reviewsCountByMovie }
+				<span class="h4">명의</span>
+			</div>
+			<span class="cjPoint">CGV 실관람객이</span> 평가해 주셨습니다.
+		</div>
+		<div class="col-sm-2 GPA4_4">
+			<img src="/jf/photos/attractive.png" alt="">
+		</div>
+	</div>
+	<div class="row GPA_main_3">
+		<div class="col-sm-2">
+			<span>최신순</span><span
+				class="glyphicon glyphicon-menu-down GPA_main_3_1"></span> <span>평점순</span>
+		</div>
+	</div>
+	<div class="row GPA_main_4">
+		<c:forEach var="a" items="${reviews }">
+			<div class="col-sm-6 GPA_main_4_detail ">
+				<div class="row">
+					<div class="col-sm-3">
+						<img src="/jf/photos/profile.PNG" alt="">
+					</div>
+					<div class="col-sm-8 ">
+						<div class="row">
+							<div class="col-sm-1 GPA_main_4_1">
+								<img class="gpa_small_egg" src="/jf/photos/GREAT.PNG" alt="">
+							</div>
+							<div class="col-sm-5">
+								<span class="GPA_main_4_2_id">${a.memberId }</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 ">
+								<div class="GPA_main_4_3_form">
+									<span class="GPA_main_4_3_contents"> ${a.rcomment } </span>
+								</div>
+								
+								<div class="row">
+									<div class="col-sm-3 GPA_main_4_3_date">
+										<fmt:formatDate value="${a.createDate }" />
+									</div>
+									<div class="col-sm-4 GPA_main_4_3_likes">
+										<span class="glyphicon likes glyphicon-thumbs-up"></span>0
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-1 GPA_main_4_3_glyphicon">
+						<span class="glyphicon glyphicon-option-vertical"></span>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+</div>

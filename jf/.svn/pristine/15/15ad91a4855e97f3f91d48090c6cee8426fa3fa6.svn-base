@@ -1,0 +1,339 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>극장 > 이벤트&amp;극장 > CgvTheater ></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/header.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/CGVtheater.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/main.css">
+<style>
+@media ( min-width : 768px) {
+	.container {
+		width: 750px;
+	}
+}
+
+@media ( min-width : 992px) {
+	.container {
+		width: 1010px;
+	}
+}
+
+.theater_3_1_mainImg {
+	background-image: url("/jf/photos/theaterphotos/${theater.photo}");
+	width: 980px;
+	height: 420px;
+	background-origin: padding-box;
+}
+
+.theater_bottom_hands_div>a {
+	color: black;
+}
+</style>
+</head>
+
+<body>
+	<%@ include file="../../common/navigation.jsp"%>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="theater-top">
+					<div class="row">
+						<div class="col-sm-10 col-sm-offset-1 theater-top-row-1">
+							<img src="/jf/photos/theater_favorite_cgv.png" alt="">
+							<ul class="theater-top-favoriteTheaters">
+								<li style="padding-top: 11px;" class="text-center"><a
+									href="">CGV강남</a></li>
+								<li style="padding-top: 11px;" class="text-center"><a
+									href=""></a></li>
+								<li style="padding-top: 11px;" class="text-center"><a
+									href=""></a></li>
+								<li style="padding-top: 11px;" class="text-center"><a
+									href=""></a></li>
+								<li style="padding-top: 11px;" class="text-center"><a
+									href=""></a></li>
+							</ul>
+							<button class="theater_btn_set_myFavorite">
+								<span>+</span>
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-10 col-sm-offset-1 theater_1_1">
+							<hr class="theater_top_hr">
+							<div class="row">
+								<div class="col-sm-12 top_CGVregion">
+									<ul class="theater_top_Theaters text-center">
+										<c:forEach var="city" items="${cities }">
+											<a href="cgvtheaters.jf?tno=1&city=${city}">
+												<li
+												class=" text-center ${param.city eq city? 'theater_active' : '' }">${city }</li>
+											</a>
+										</c:forEach>
+									</ul>
+								</div>
+							</div>
+							<hr class="theater_top_hr_2">
+							<div class="row">
+								<div class="col-sm-12">
+									<ul class="theater_top_CGVList">
+										<c:forEach var="theater" items="${theaters }">
+											<a href="cgvtheaters.jf?tno=${theater.no }&city=${theater.city}"><li class="${(empty param.tno ? 1 : param.tno) eq theater.no ? 'theater_active2' : ''}">${theater.name }</li></a>
+										</c:forEach>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row theater_main_row">
+			<div class="col-sm-12 theater_bottom_main_col">
+				<div class="row">
+					<div class="col-sm-12 text-center theater_2_1_img">
+						<img src="/jf/photos/theater_theater.gif" alt="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 theater_3_1_mainInfoName">
+						<h1>
+							<strong>${theater.name }</strong>
+						</h1>
+					</div>
+				</div>
+				<div class="row theater_3_1_main_img_row1">
+					<div class="col-sm-12 theater_3_1_mainImg">
+						<div class="row theater_3_1_main_ImgRow">
+							<div class="col-sm-5 theater_3_1_main_info">
+								<p>
+									<strong>${theater.location } <a
+										class="theater_parking" href="">위치/주차 안내></a></strong>
+								</p>
+								<p>1544-1122</p>
+								<p>${roomsCount }관/${seatsCount }석</p>
+							</div>
+							<div class="col-sm-2 theater_3_1_main_info tmi">
+								<span id="theater_sweetbox"> SWEETBOX </span>
+							</div>
+							<div class="col-sm-5 theater_info_notice">
+								<div class="row ">
+									<div class="col-sm-3">
+										<p>공지사항</p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 ">
+										<c:forEach var="notice" items="${notices }">
+											<p>${notice.title }</p>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row theater_MIBjpg_row ">
+					<div class="col-sm-12 ">
+						<img src="/jf/photos/MIB.jpg" alt="">
+					</div>
+				</div>
+				<div class="row theater_3_1_main_img_row1">
+					<div class="col-sm-12 text-center time-parking_main-info">
+						<a href=""><span class="theater_time_parking_main_info_span"><span
+								class="glyphicon glyphicon-hand-right"></span> 상영시간표 & 위치/주차안내</span></a>
+					</div>
+				</div>
+				<div class="row theaxxter_bottom_timetable_row">
+					<div class="col-sm-10">
+						<hr class="theater_bottom_timetable_hr">
+						<div class="row theater_bottom_timetable_time">
+							<div
+								class="col-sm-1 theater_bottom_hands_div theater_bottom_hands_div_left">
+								<a href=""><span class="glyphicon glyphicon-hand-left"></span></a>
+							</div>
+							<div class="col-sm-10 theater_bottom_date_div">
+								<!--                               날짜 반복 시작-->
+								<c:choose>
+									<c:when test="${not empty monthAndDates }">
+										<c:forEach var="a" items="${monthAndDates }">
+											<a class="theater_screening_dates" id="${a.fullDate }" onclick="selectDate(event,'${a.fullDate}',${param.tno })" href="#" <%--"cgvtheaters.jf?date=${a.fullDate }&tno=${param.tno}" --%>> <span
+												class=" <%-- ${(empty param.date ? inputDate : param.date) eq a.fullDate ? 'theater_date_active' : '' } --%>">
+													<span class="theater_bottom_dates_1"> ${a.month }월 </span>
+													<span class="theater_bottom_dates_2">${a.date }</span>
+											</span>
+											</a>
+										</c:forEach>
+										<!--                               날짜 반복 끝-->
+									</c:when>
+								</c:choose>
+
+							</div>
+							<div
+								class="col-sm-1 theater_bottom_hands_div theater_bottom_hands_div_right">
+								<a href=""> <span class="glyphicon glyphicon-hand-right"></span>
+								</a>
+							</div>
+
+							<div class="col-sm-12">
+								<hr class="theater_bottom_timetable_hr_2">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-7 theater_BN_imgDiv">
+								<img src="/jf/photos/theater_sun.PNG" alt=""> <span>조조</span>
+								<img src="/jf/photos/theater_moon.png" alt=""><span>심야</span>
+								<span class="theater_BN_info">* 시간을 클릭하시면 빠른 예매를 하실 수
+									있습니다.</span>
+							</div>
+							<div class="col-sm-5 text-right">
+								<span class="glyphicon glyphicon-info-sign"></span><span
+									class="theater_BN_info_2">관람가격 안내</span> <span
+									class="glyphicon glyphicon-info-sign"></span> <span
+									class="theater_BN_info_2">관람등급 안내</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 theater_bottom_timetable_hr_3_div">
+								<hr class="theater_bottom_timetable_hr_3">
+							</div>
+						</div>
+				<!-- 영화 1개 시간표 시작-->
+						<div id="ajax_theater_timetable" class="">
+							
+						</div>
+				<!-- 영화 1개 시간표 끝-->
+
+						<div class="theater_bottom_event_div ">
+							<div class="row ">
+								<div class="col-sm-12 text-center theater_bottom_event_img_div">
+									<img src="/jf/photos/theater_relation_event.gif" alt="">
+								</div>
+							</div>
+
+							<div class="row theater_bottom_event_imgs">
+								<a href="">
+									<div class="col-sm-4">
+										<img src="/jf/photos/theater_event_mileage.jpg" alt="">
+									</div>
+								</a> <a href="">
+									<div class="col-sm-4">
+										<img src="/jf/photos/theater_event_erand.jpg" alt="">
+									</div>
+								</a> <a href="">
+									<div class="col-sm-4">
+										<img src="/jf/photos/theater_event_citizen.jpg" alt="">
+									</div>
+								</a>
+							</div>
+
+							<div class="row theater_bottom_event_info">
+								<div class="col-sm-4 ">
+									CGV 극장별 <br> 이랜드몰 제휴 전사 프로모션
+								</div>
+								<div class="col-sm-4">
+
+									CGV 극장별 <br> [CGV 강남 23개 극장]
+								</div>
+								<div class="col-sm-4">
+									CGV 극장별 <br> [CGV 강남 외 25개극장] 서울시...
+								</div>
+							</div>
+							</a>
+							<div class="row theater_bottom_event_period">
+								<div class="col-sm-4">기간: 2019.05.22 ~ 2019.05.22</div>
+								<div class="col-sm-4">기간: 2019.05.22 ~ 2019.05.22</div>
+								<div class="col-sm-4">기간: 2019.05.22 ~ 2019.05.22</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-sm-2 theater_sideADimg">
+						<img src="/jf/photos/sidead_gozila.png" alt=""> <img
+							src="/jf/photos/sidead_giftcard.jpg" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!----- 지우지마시오 ----->
+
+	<!-- Footer -->
+	<%@ include file="../../common/footer.jsp"%>
+	<!-- footer -->
+	<script>
+		function selectDate(event,fullDate,tno){
+			
+			if (event) {
+				event.preventDefault();
+			}
+			
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					var screening = JSON.parse(xhr.responseText);
+					var htmlContent = '';
+					console.log(screening);
+					if(screening != undefined){
+					for(var i=0; i<screening.length; i++){
+						var screen = screening[i];
+						htmlContent += '<div class="movie_showing_time_div">';
+						htmlContent += '<div class="row"><div class="col-sm-1"><img class="theater_screening_image1" src="/jf/photos/theater_age_'+screen.ageLimit+'.PNG" alt="">';
+						htmlContent += '</div>';
+						htmlContent += '<div class="col-sm-11 thater_movie_bottom_infotable"><span class="theater_bottom_movieName"><a href="/jf/movie/moviedetail.jf?mno='+screen.movieNo+'">'+screen.movieName+'</a></span>';
+						htmlContent += '<img class="theater_screening_image2" src="/jf/photos/theater_movie_showing.PNG"> ';
+						htmlContent += '<span class="theater_bottom_movieInfo">'+screen.genre+'/'+screen.runningTime+'분/'+screen.releaseDate+' 개봉 </span>';
+						/* 2d 1관 1층, 밑에 시간표 1줄 시작 */
+
+						for(var j=0; j<screen.rooms.length; j++){
+							var room = screen.rooms[j];
+							htmlContent += '<div class="row thater_movie_bottom_infotable_2"><div class="col-sm-12 thater_movie_bottom_infotable_2_1">';
+							htmlContent += '<span class="glyphicon glyphicon-play"></span>'+room.roomNo+'관	<div class="theater_border_right_hr"></div>	총 '+room.totalSeat+'석';
+							htmlContent += '<div class="theater_border_right_hr"></div></div><div class="col-sm-10 theater_movie_timetable_div">';
+							/* 상영시간 반복 시작  */
+							for(var k=0; k<room.roomDetail.length; k++){
+								var roomDetail = room.roomDetail[k];
+								htmlContent += '<a href=""><div class="theater_movie_timetable">';
+								htmlContent += '<div class="theater_movie_timetable_1">'+roomDetail.times+'</div><div class="theater_movie_timetable_2">'+roomDetail.leftSeat+'석</div>';
+								htmlContent += '</div></a>';
+							}
+							/* 상영시간 반복 끝 */
+							htmlContent += '</div>';
+							htmlContent += '</div>';
+						}
+						htmlContent += '</div>';
+						htmlContent += '</div><hr class="theater_bottom_timetable_hr_4"></div>';
+					}
+					document.getElementById("ajax_theater_timetable").innerHTML = htmlContent;
+					
+					$(".theater_screening_dates").removeClass('theater_date_active');
+					$('#'+fullDate).addClass('theater_date_active');
+
+/* 					var element = document.getElementById(fullDate);
+					element.classList.add('theater_date_active'); */
+					}
+				}
+			}
+			xhr.open("GET", "/jf/member/ajaxTimeTable.jf?tno="+tno+"&date="+fullDate);
+		    xhr.send();
+		}
+		selectDate(null, '${today}','${param.tno}');
+	</script>
+</body>
+</html>
+

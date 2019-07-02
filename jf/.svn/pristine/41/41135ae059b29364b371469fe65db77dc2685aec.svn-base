@@ -1,0 +1,318 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/jf/resources/css/bootstrap.css">
+    <link rel="stylesheet" href="/jf/resources//bootstrap/css/mycgv.css">
+    <link rel="stylesheet" href="/jf/resources//bootstrap/css/wishlist.css">
+</head>
+<body>
+<%@include file="../../common/navigation.jsp" %>
+<div class="container-fluid bg-bricks main bg-bricks backimg"></div>
+
+<div class="container">
+   <div class="row">
+       <div class="col-sm-12 mycgv-info"></div>
+        <div class="row info-contents">
+            <div class="col-sm-2">
+                <div class="profile-photo">
+                   <img src="http://img.cgv.co.kr/WebApp/images/couplingclub/config/img_character_09.png" alt="프로필사진">
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div class="info-content2">
+                    <strong id="info-name">${LOGINMEMBER.name }</strong>님
+                    <strong id="info-id">${LOGINMEMBER.id} 닉네임 : ${LOGINMEMBER.nickName }</strong>
+                </div>
+                <div class="info-content3">
+                    <strong id="info-info">phone : ${LOGINMEMBER.phone }</strong>
+                    <strong id="info-info">e-mail : ${LOGINMEMBER.email }</strong>
+                    <strong id="info-info">birth : ${LOGINMEMBER.birth }</strong>
+                </div>
+                <div class="info-content4 info-ul">
+                    <strong id="my-movie">&lt;자주가는 극장></strong>
+                    <ul>
+                    <c:forEach var="m" items="${MyTheaters }">
+                        <li><a href="/jf/cgv/cgvtheaters.jf?tno=${m.theaterNo }">${m.theaterName }</a></li>
+                    </c:forEach>
+                        <li><a href="" data-toggle="modal" data-target="#exampleModal">자주가는 극장 설정</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+   </div>
+   <div class="row text-center" style="margin-top: 50px; margin-left: 20px;">
+      <div class="col-sm-12 box-title">
+       My CGV
+       </div>
+   </div>
+    <div class="row my-content">
+    <!-- my cgv 메인 컨텐츠 -->
+        <div class="container">
+		<div class="row wish_main_row">
+			<div class="col-sm-3 text-center wish_mainleft_col">
+				<div class="row ">
+					<div class="col-sm-9 whole_profile_div">
+						<img class="wish_profile" src="/jf/photos/bigProfile.PNG" alt="">
+						<span class="wish_username">${LOGINMEMBER.name }님</span> <a
+							href=""><span class="glyphicon glyphicon-tag"></span></a>
+					</div>
+					<div>
+						<a href="">
+							<div class="col-sm-9 wish_1 wish_1_active">
+								<div class="row">
+									<div class="col-sm-2 wish_1_1">
+										<span class="glyphicon glyphicon-hand-right wish_right"></span>
+									</div>
+									<div class="col-sm-8 wish_1_2">
+										<div class="wish_1_2_number"><c:out value="${wishListsCount }" default="0"/> </div>
+										<span>위시리스트</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div>
+						<a href="">
+							<div class="col-sm-9 wish_1 ">
+								<div class="row">
+									<div class="col-sm-2 wish_1_1 ">
+										<span class="glyphicon glyphicon-hand-right wish_right"></span>
+									</div>
+									<div class="col-sm-8 wish_1_2">
+										<div class="wish_1_2_number">6</div>
+										<span>내가 본 영화</span>
+									</div> 
+								</div>
+							</div>
+						</a>
+					</div>
+					<div>
+						<a href="">
+							<div class="col-sm-9 wish_1">
+								<div class="row">
+									<div class="col-sm-2 wish_1_1 ">
+										<span class="glyphicon glyphicon-hand-right wish_right"></span>
+									</div>
+									<div class="col-sm-8 wish_1_2">
+										<div class="wish_1_2_number">0</div>
+										<span>무비 다이어리</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-sm-9 wish_main_rightcol">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="row">
+							<div class="col-sm-10 col-sm-offset-1">
+								<span class="wish_2_1_1">위시리스트</span> <span class="wish_2_1_2"><c:out value="${wishListsCount }" default="0"/>건</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<c:if test="${not empty movies }">
+						<c:forEach var="movie" items="${movies }">
+							<!--                   위시리스트 영화 반복시작-->
+							<div class="col-sm-4 wish_2_2_imgdiv">
+								<div class="row">
+									<div class="col-sm-10 col-sm-offset-1 wish_img_div">
+										<a href="/jf/member/process_removeWishList.jf?mno=${movie.no }"> <span
+											class="glyphicon glyphicon-remove wish_2_2_remove"> </span>
+										</a> <a href=""> <img src="/jf/photos/movieposters/${movie.poster }">
+										</a>
+									</div>
+									<div class="col-sm-10 col-sm-offset-1">
+										<div class="row">
+											<div class="col-sm-12 wish_2_2_moviename_div">
+												<span class="wish_2_2_moviename">${movie.korTitle }</span>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12 wish_2_2_release_div">
+												<span class="wish_2_2_releaseDate"><fmt:formatDate value="${movie.releaseDate }"/> 개봉</span>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12 text-center wish_2_2_div">
+												<span class="glyphicon glyphicon-heart wish_heart"> </span>
+												<span class="wish_likes">${movie.wishList }</span> <span
+													class="wish_usedYn">상영종료</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</c:if>
+					<!-- 위시리스트 영화 반복끝  -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <div class="row third-content" style="border-top : 2px dashed gray;">
+        <div class="col-sm-12">
+           <h2>MY 예매내역 1건</h2>
+            <div class="content-box">
+                <div class="content-box-inner">
+                    <table class="box-table">
+                       <tr>
+                           <th>예매번호</th>
+                           <th>극장이름</th>
+                           <th>영화명</th>
+                       </tr>
+                        <tr>
+                            <td>919</td>
+                            <td>천호 CGV</td>
+                            <td>어벤져스: 앤드게임</td>
+                        </tr>
+                        <tr>
+                            <td>920</td>
+                            <td>강변 CGV</td>
+                            <td>악인전</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row third-content">
+        <div class="col-sm-12">
+            <h2>MY Q&A</h2>
+            <div class="content-box">
+                <div class="content-box-inner">
+                    <table class="box-table">
+                       <tr>
+                           <th>번호</th>
+                           <th>제목</th>
+                           <th>작성일</th>
+                       </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>영화 재미있나요?</td>
+                            <td>2017.08.19</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>영화 재미없나요?</td>
+                            <td>2017.08.20</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!--  modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="hidden">자주가는 지역 및 영화관 선택</h2>
+                <p>영화관을 선택하여 등록해주세요. <strong>최대 5개까지</strong> 등록하실 수 있습니다.</p>
+                <p>
+                	<!-- 지역 선택 -->
+                    <select onchange="showTheaters(this.value)" id="select_region" name="show_region" title="자주가는 지역선택">                        
+                    <option value="" selected="selected">지역선택</option>
+                    <c:forEach var="city" items="${cities }">
+                    	<option value="${city }">${city }</option>
+                    </c:forEach>
+                    </select>
+                    
+                    <!-- 히든값 -->
+                    <input type="hidden" id="hiddenvalue" value="">
+                    <!-- 극장 선택 -->
+                    <select id="select_theater" name="show_theater" 
+                    onchange="document.getElementById('hiddenvalue').value = this.options[this.selectedIndex].value" title="자주가는 CGV선택">                        
+                    	<option value="" selected="selected">극장선택</option>
+                    </select> 
+                    
+                    
+                    <!-- ajax 은정이한테 받아와라 해훈아 -->                   
+                   
+                    
+                    <button id="btn_add_favorite_theater" type="button" class="round inblack on"
+                    onclick="search()"><span>자주가는 CGV 추가</span></button>
+                </p>
+      </div>
+      <!-- 자주가는 극장 insert -->
+      <script>
+		      function search() {
+		  		var theater = document.getElementById('hiddenvalue').value;
+		  		console.log("theater", theater);
+
+		  		var xhr = new XMLHttpRequest();
+
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState == 4 && xhr.status == 200) {
+					}
+				}
+				xhr.open("GET", "addMyTheater.jf?theater="+theater);
+				xhr.send();
+		  	}
+      </script>
+      <!-- ---------------- -->
+      
+      
+      <div class="modal-body">
+             <p>&lt;<strong>${LOGINMEMBER.name }</strong>님의 자주가는 CGV></p>
+             <ul>
+             <c:forEach var="m" items="${MyTheaters }">
+                 <li><a href="/jf/cgv/cgvtheaters.jf?tno=${m.theaterNo }">${m.theaterName }</a></li>
+             </c:forEach>
+             </ul>
+			        <form action="/jf/member/addMyTheater.jf" method="post">
+				        <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					        <button type="submit" class="btn btn-primary">설정 완료</button>
+				        </div>
+			        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  modal -->
+
+<%@include file="../../common/footer.jsp" %>
+
+<script>
+	function showTheaters(city) {
+		var xhr = new XMLHttpRequest();
+		
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				var theaters = JSON.parse(xhr.responseText);
+				console.log(theaters);
+				
+				var htmlContents = "";
+				
+				for(var i=0; i<theaters.length; i++) {
+					htmlContents += "<option value=\""+theaters[i].no+"\" selected=\"selected\">"+theaters[i].name+"</option>";
+				}
+				document.getElementById('select_theater').innerHTML = htmlContents;
+			}
+		}
+		xhr.open("GET", "showTheater.jf?city="+city);
+		xhr.send();
+	}
+</script>
+</body>
+</html>

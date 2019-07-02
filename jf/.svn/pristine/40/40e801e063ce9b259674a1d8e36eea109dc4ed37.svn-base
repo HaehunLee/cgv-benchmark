@@ -1,0 +1,105 @@
+package kr.co.hta.controller;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import kr.co.hta.movies.dao.EventDao;
+import kr.co.hta.movies.dao.NoticeDao;
+import kr.co.hta.vo.Event;
+import kr.co.hta.vo.Notice;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+
+@Controller
+public class NoticeController {
+	
+	private NoticeDao noticeDao = new NoticeDao();
+	
+	@RequestMapping("/semi/admin/noticelistsearch.jf")
+	public ModelAndView selectByNotice(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/noticelistsearch.jsp");
+		
+		int pno = Integer.parseInt(req.getParameter("pno"));
+		int begin = (pno-1)*10 + 1;
+		int end = pno*10;
+		String keyword = req.getParameter("keyword");
+		
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("keyword", keyword);
+		
+		
+		List<Notice> notices = noticeDao.selectSearchNotices(map);
+		
+		
+		int count = noticeDao.allCount();
+		count = (int)Math.ceil((double)count/10);
+		
+		mav.addAttribute("notices", notices);
+		mav.addAttribute("count", count);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/noticelist.jf")
+	public ModelAndView select(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/noticelist.jsp");
+
+		int pno = Integer.parseInt(req.getParameter("pno"));
+		int begin = (pno-1)*10 + 1;
+		int end = pno*10;
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		List<Notice> notices = noticeDao.selectNoticeByRange(map);
+
+		
+		int count = noticeDao.allCount();
+		count = (int)Math.ceil((double)count/10);
+		
+		mav.addAttribute("notices", notices);
+		mav.addAttribute("count", count);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/noticeform.jf")
+	public ModelAndView noticeform(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/noticeform.jsp");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/addnotice.jf")
+	public ModelAndView insert(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:noticelist.jf");
+		
+		String title = req.getParameter("title");
+		String contents = req.getParameter("contents");
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContents(contents);
+		
+		noticeDao.insertNotice(notice);
+		return mav;
+	}
+	
+	
+}

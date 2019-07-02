@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/jf/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/jf/resources//bootstrap/css/mycgv.css">
+</head>
+
+<body>
+	<%@include file="../../common/navigation.jsp"%>
+	<div class="container-fluid bg-bricks main bg-bricks backimg"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 mycgv-info"></div>
+			<div class="row info-contents">
+				<div class="col-sm-2">
+					<div class="profile-photo">
+						<img src="" alt="프로필사진">
+					</div>
+				</div>
+				<div class="col-sm-10">
+					<div class="info-content2">
+						<strong id="info-name">${LOGINMEMBER.name }</strong>님 <strong
+							id="info-id"> 사용자 닉네임 : ${LOGINMEMBER.nickName }</strong>
+					</div>
+					<div class="info-content3">
+						<strong id="info-info">phone : ${LOGINMEMBER.phone }</strong> <strong
+							id="info-info">e-mail : ${LOGINMEMBER.email }</strong> <strong
+							id="info-info">birth : ${LOGINMEMBER.birth }</strong>
+					</div>
+					<div class="info-content4 info-ul">
+						<strong id="my-movie">&lt;자주가는 극장></strong>
+						<ul>
+							<li>종로 피카디리1958</li>
+							<li>서울 천호 CGV</li>
+							<li>서울 용산 CGV</li>
+							<li>서울 강남 CGV</li>
+							<li>창원 CGV</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 80px;">
+			<div class="col-sm-10 col-sm-offset-1">
+				<div class="text-right">
+					<a href="questionlist.jf?pno=${param.pno }" class="btn btn-primary">목록</a>
+				</div>
+				<hr>
+				<table class="table table-bordered"
+					style="background-color: white; border: solid grays; border-width: 4px; border-radius: 3;">
+					<colgroup>
+						<col width="25%">
+						<col width="25%">
+						<col width="15%">
+						<col width="25%">
+					</colgroup>
+					<tr>
+						<th class="active">과정번호</th>
+						<td>${question.no }</td>
+						<th class="active">등록일</th>
+						<td><fmt:formatDate value="${question.createDate }" /></td>
+					</tr>
+					<tr>
+						<th class="active">관람한 극장</th>
+						<td>${question.theaterName }</td>
+						<th class="active">처리 상태</th>
+						<td>${question.status }</td>
+					</tr>
+					<tr>
+						<th class="active">제목</th>
+						<td colspan="3">${question.title }</td>
+					</tr>
+					<tr>
+						<th class="active">문의 내용</th>
+						<td colspan="3">${question.contents }</td>
+					</tr>
+				</table>
+				<hr>
+				<div class="row">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<p>
+								<strong>관리자</strong> <small> <fmt:formatDate
+										value="${question.answerCreateDate }" /></small>
+							</p>
+							<p>답변${question.answerContents }</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@include file="../../common/footer.jsp"%>
+</body>
+
+</html>

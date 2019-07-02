@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+		
+		
+	<insert id="insertNotice" parameterClass="Notice">
+		insert into jf_notices (
+			NOTICE_NO
+			,NOTICE_TITLE
+			,NOTICE_CONTENT
+			,NOTICE_CREATE_DATE
+			,NOTICE_VIEWS)
+		VALUES 
+			(jf_notice_seq.nextval, #title#, #contents#, sysdate, 0)
+	</insert>
+	
+	  
+	<select id="selectAllNotice" resultClass="Notice">
+		select
+			NOTICE_NO				no
+			,NOTICE_TITLE			title
+			,NOTICE_CREATE_DATE		 createDate
+			,NOTICE_VIEWS			views
+			,NOTICE_CONTENT			contents
+		from JF_NOTICES
+		order by NOTICE_NO
+	</select>
+	
+	
+	
+	
+
+</sqlMap>

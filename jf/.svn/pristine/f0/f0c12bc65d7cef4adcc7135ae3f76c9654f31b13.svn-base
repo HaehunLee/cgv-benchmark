@@ -1,0 +1,135 @@
+        * {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .imgs {
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #ffffcc;
+            padding-top: 10px;
+        }
+
+        .main_header {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .header_center2 {
+
+            padding-top: 10px;
+        }
+
+        .main_header>a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .main_contents_section {
+            margin: 10px;
+        }
+
+        .aside {
+            width: 120px;
+            position: fixed;
+            top: 150px;
+            right: 150px;
+        }
+
+        .aside_imgs {
+            width: 103px;
+        }
+
+        fieldset>input {
+            width: 100px;
+            height: 25px;
+        }
+
+        fieldset>button {
+            height: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                width: 750px;
+            }
+        }
+
+        @media (min-width: 1022px) {
+            .container {
+                width: 1080px;
+            }
+
+            .footer {
+                margin-bottom: 20px;
+            }
+        }
+
+        .bottom {
+            padding: 20px;
+        }
+
+        .likes {
+            margin-left: 15px;
+            margin-right: 10px;
+        }
+
+        .top_header {
+            height: 150px;
+            background-image: url("http://img.cgv.co.kr/R2014/images/common/bg/bg_header.gif");
+            background-repeat: repeat-x;
+        }
+
+        .header_navbar {
+            height: 32px;
+        }
+
+        .navbar-default {
+            position: relative;
+            font-size: 1.2rem;
+            top: -20px;
+            margin-bottom: 0;
+        }
+
+        .navbar-nav>li>a {
+        	font-size: 0.7rem;
+            color: black;
+            min-height: 32px;
+            padding-top: 10px;
+            padding-bottom: 12px;
+        }
+
+        .navbar {
+            min-height: 32px;
+            margin: 0;
+        }
+
+        .main_container {
+            position: relative;
+        }
+        
+                .main-contents {
+            margin-top: 30px;
+        }
+        
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+        body {
+            background-color: rgb(252, 254, 238);
+        }
+        
+        
+         .dropdown:hover .dropdown-menu {
+            display: block;
+         }
+
+
+
+        .dropdown .dropdown-menu {
+            display: none;
+            background-color: darkslategray;
+         }

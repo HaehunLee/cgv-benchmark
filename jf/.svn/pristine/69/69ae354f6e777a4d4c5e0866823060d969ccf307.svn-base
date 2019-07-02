@@ -1,0 +1,26 @@
+package kr.co.hta.vo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class dd {
+	public static void main(String[] args) {
+		List<ScreeningDate> monthAndDates = new ArrayList<>();
+		ArrayList<String> dates = new ArrayList<String>();
+		dates.add("05-23");
+		dates.add("05-24");
+		
+		for(String date : dates) {
+			String[] words = date.split("-");
+			ScreeningDate screeningDate = new ScreeningDate();
+			screeningDate.setMonth(words[0]);
+			screeningDate.setDate(words[1]);
+			monthAndDates.add(screeningDate);
+		}
+		for(ScreeningDate date : monthAndDates) {
+			System.out.println(date.getMonth());
+			System.out.println(date.getDate());
+			
+		}
+	}
+}

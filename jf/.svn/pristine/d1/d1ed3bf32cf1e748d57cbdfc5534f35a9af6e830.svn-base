@@ -1,0 +1,330 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>영화 그 이상의 감동. CGV</title>
+  <link rel="shortcut icon" href="/jf/photos/cj_logo.ico" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/jf/resources/bootstrap/css/bootstrap.min.css">
+  <script src="/jf/resources/bootstrap/js/jquery.min.js"></script>
+  <script src="/jf/resources/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/jf/resources/bootstrap/css/reservation.css">
+</head>
+<body>
+<%@ include file="../../common/navigation.jsp" %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-right return-res">
+            <button class="btn btn-default" style="background-color: #f2f0e4">
+                <span class="glyphicon glyphicon-repeat"></span>예매 다시하기
+            </button>
+        </div>
+    </div>
+    <div class="row step">
+        <div class="col-sm-3 col-section">
+            <div class="row">
+                <div class="col-sm-12 text-center col-head">
+                    <h4>영화</h4>
+                </div>
+            </div>
+            <div class="row col-body">
+                <div class="col-sm-12">
+                	<div class="row">
+	                    <div class="col-sm-12 movie-select">
+	                        <a href="" class="movie-select on">예매율순</a>
+	                        <a href="">가나다순</a>
+	                    </div>	
+                	</div>
+                	<div class="row">
+	                    <div class="col-sm-12" style="height: 500px; overflow: auto;">
+	                        <ul class="movie-menu">
+	                        <c:forEach var="movie" items="${movies }">
+	                            <li class="">
+	                            	<a href="reservation.jf">
+	                                	<span class="ico-grade grade-${movie.ageLimit }"></span>${movie.korTitle }
+	                            	</a>
+	                            </li>                        
+	                        </c:forEach>
+	                        </ul>
+	                    </div>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-section">
+            <div class="row">
+                <div class="col-sm-12 text-center col-head">
+                    <h4>극장</h4>
+                </div>
+            </div>
+            <div class="row col-body">
+                <div class="col-sm-12">
+                    <div class="favorite-cgv-title">
+                        <p>자주가는 CGV</p>
+                    </div>
+                    <div class="favorite-cgv">
+                        <ul class="theaters">
+                            <li><a>CGV창원더시티</a></li>
+                            <li><a>CGV창원</a></li>
+                            <li><a>CGV천호</a></li>
+                            <li><a>CGV피카디리1958</a></li>
+                            <li><a>CGV용산아이파크몰</a></li>
+                        </ul>
+                    </div>
+                    <div class="row theater-list">
+                        <div class="col-sm-6 theater-area-list">
+                            <ul>
+                                <li class="selected">
+                                    <a href="">
+                                        서울(30)
+                                    </a>
+                                </li>
+                                <li><a href="">서울(30)</a></li>
+                                <li><a href="">서울(30)</a></li>
+                                <li><a href="">서울(30)</a></li>
+                                <li><a href="">서울(30)</a></li>
+                                <li><a href="">서울(30)</a></li>
+                                <li><a href="">서울(30)</a></li>
+                                <li><a href="">서울(30)</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 theater-cgv-list">
+                            <ul>
+                                <li><a>강남</a></li>
+                                <li><a>강남</a></li>
+                                <li class="selected-city"><a>
+                                    강남
+                                </a></li>
+                                <li><a>강남</a></li>
+                                <li><a>강남</a></li>
+                                <li><a>강남</a></li>
+                                <li><a>강남</a></li>
+                                <li><a>강남</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1 col-section">
+            <div class="row">
+                <div class="col-sm-12 text-center col-head">
+                    <h4>날짜</h4>
+                </div>
+            </div>
+            <div class="row col-body">
+                <div class="date-list">
+                    <div>
+                        <div class="year-month">
+                            <div class="year">2019</div>
+                            <div class="month"><span>
+                                5
+                            </span></div>
+                        </div>
+                    </div>
+                    <ul class="dayweek-day">
+                        <li><a href="#">
+                            <span class="dayweek">목</span>
+                            <span class="day">23</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="dayweek">금</span>
+                            <span class="day">24</span>
+                        </a></li>
+                        <li><a href="#" class="saturday">
+                            <span class="dayweek">토</span>
+                            <span class="day">25</span>
+                        </a></li>
+                        <li><a href="#" class="sunday">
+                            <span class="dayweek">일</span>
+                            <span class="day">26</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="dayweek">월</span>
+                            <span class="day">27</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="dayweek">화</span>
+                            <span class="day">28</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="dayweek">수</span>
+                            <span class="day">29</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="dayweek">목</span>
+                            <span class="day">30</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="dayweek">금</span>
+                            <span class="day">31</span>
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="date-list">
+                    <div>
+                        <div class="year-month">
+                            <div class="year">2019</div>
+                            <div class="month"><span>
+                                6
+                            </span></div>
+                        </div>
+                    </div>
+                    <ul class="dayweek-day">
+                        <li><a href="#">
+                            <span class="dayweek">목</span>
+                            <span class="day">23</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="dayweek">금</span>
+                            <span class="day">24</span>
+                        </a></li>
+                        <li><a href="#" class="saturday">
+                            <span class="dayweek">토</span>
+                            <span class="day">25</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5 col-section">
+            <div class="row">
+                <div class="col-sm-12 text-center col-head">
+                    <h4>시간</h4>
+                </div>
+            </div>
+            <div class="row col-body">
+                <div class="col-sm-12">
+                    <div class="time-option">
+                        <span class="ico-sun"></span>조조
+                        <span class="ico-moon"></span> 심야
+                    </div>
+                    <div class="placeholder">
+                        <p style="text-align: center;">영화, 극장, 날짜를 선택해주세요.</p>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 theater">
+                                    <strong>1관</strong> (총 4석)
+                                    <ul class="res-ul">
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 theater">
+                                    <strong>2관</strong> (총 4석)
+                                    <ul class="res-ul">
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 theater">
+                                    <strong>3관</strong> (총 4석)
+                                    <ul class="res-ul">
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 theater">
+                                    <strong>4관</strong> (총 4석)
+                                    <ul class="res-ul">
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%@ include file="../../common/footer.jsp" %>
+</body>
+</html>

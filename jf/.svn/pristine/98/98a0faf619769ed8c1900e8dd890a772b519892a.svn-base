@@ -1,0 +1,140 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/jf/resources/css/bootstrap.css">
+    <link rel="stylesheet" href="/jf/resources//bootstrap/css/mycgv.css">
+</head>
+<body>
+<%@include file="../../common/navigation.jsp" %>
+<div class="container-fluid bg-bricks main bg-bricks backimg"></div>
+
+<div class="container">
+   <div class="row">
+       <div class="col-sm-12 mycgv-info"></div>
+        <div class="row info-contents">
+            <div class="col-sm-2">
+                <div class="profile-photo">
+                   <img src="http://img.cgv.co.kr/WebApp/images/couplingclub/config/img_character_09.png" alt="프로필사진">
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div class="info-content2">
+                    <strong id="info-name">최은정</strong>님
+                    <strong id="info-id">mookwy 닉네임 : 은쟈미</strong>
+                </div>
+                <div class="info-content3">
+                    <strong id="info-info">phone : 010-1111-2222</strong>
+                    <strong id="info-info">e-mail : eun@naver.com</strong>
+                    <strong id="info-info">birth : 1995.01.14</strong>
+                </div>
+                <div class="info-content4 info-ul">
+                    <strong id="my-movie">&lt;자주가는 극장></strong>
+                    <ul>
+                        <li>종로 피카디리1958</li>
+                        <li>서울 천호 CGV</li>
+                        <li>서울 용산 CGV</li>
+                        <li>서울 강남 CGV</li>
+                        <li>창원 CGV</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+   </div>
+   <div class="row text-center" style="margin-top: 50px; margin-left: 20px;">
+      <div class="col-sm-12 box-title">
+       My CGV
+       </div>
+   </div>
+    <div class="row my-content">
+    <!-- my cgv 메인 컨텐츠 -->
+        <div class="col-sm-12">
+            <div class="box">
+                <a href="">
+                   <div class="box-inner wishlist">
+                        <span>위시리스트</span>
+                    </div>
+                </a>
+                <a href="">
+                   <div class="box-inner moviediary">
+                        <span>무비 다이어리</span>
+                    </div>
+                </a>
+                <a href="">
+                   <div class="box-inner watched">
+                        <span>내가본영화</span>
+                    </div>
+                </a>
+                <a href="">
+                   <div class="box-inner myqna">
+                        <strong><span class="glyphicon glyphicon-question-sign">My Q&A</span></strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row third-content">
+        <div class="col-sm-12">
+           <h2>MY 예매내역 1건</h2>
+            <div class="content-box">
+                <div class="content-box-inner">
+                    <table class="box-table">
+                       <tr>
+                           <th>예매번호</th>
+                           <th>극장이름</th>
+                           <th>영화명</th>
+                       </tr>
+                        <tr>
+                            <td>919</td>
+                            <td>천호 CGV</td>
+                            <td>어벤져스: 앤드게임</td>
+                        </tr>
+                        <tr>
+                            <td>920</td>
+                            <td>강변 CGV</td>
+                            <td>악인전</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row third-content">
+        <div class="col-sm-12">
+            <h2>MY Q&A</h2>
+            <div class="content-box">
+                <div class="content-box-inner">
+                    <table class="box-table">
+                       <tr>
+                           <th>번호</th>
+                           <th>제목</th>
+                           <th>작성일</th>
+                       </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>영화 재미있나요?</td>
+                            <td>2017.08.19</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>영화 재미없나요?</td>
+                            <td>2017.08.20</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%@include file="../../common/footer.jsp" %>
+</body>
+</html>

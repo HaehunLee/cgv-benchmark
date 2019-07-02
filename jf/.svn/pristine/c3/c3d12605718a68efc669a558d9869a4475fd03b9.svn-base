@@ -1,0 +1,431 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>극장 > 이벤트&amp;극장 > CgvTheater ></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/header.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/CGVtheater.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/main.css">
+<style>
+@media ( min-width : 768px) {
+	.container {
+		width: 750px;
+	}
+}
+
+@media ( min-width : 992px) {
+	.container {
+		width: 1010px;
+	}
+}
+
+.theater_3_1_mainImg {
+	background-image: url("/jf/photos/theaterphotos/${theater.photo}");
+	width: 980px;
+	height: 420px;
+	background-origin: padding-box;
+}
+
+.theater_bottom_hands_div>a {
+	color: black;
+}
+</style>
+</head>
+
+<body>
+	<%@ include file="../../common/navigation.jsp"%>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="theater-top">
+					<div class="row">
+						<div class="col-sm-10 col-sm-offset-1 theater-top-row-1">
+							<img src="/jf/photos/theater_favorite_cgv.png" alt="">
+							<ul class="theater-top-favoriteTheaters">
+								<li style="padding-top: 11px;" class="text-center"><a
+									href="">CGV강남</a></li>
+								<li style="padding-top: 11px;" class="text-center"><a
+									href=""></a></li>
+								<li style="padding-top: 11px;" class="text-center"><a
+									href=""></a></li>
+								<li style="padding-top: 11px;" class="text-center"><a
+									href=""></a></li>
+								<li style="padding-top: 11px;" class="text-center"><a
+									href=""></a></li>
+							</ul>
+							<button class="theater_btn_set_myFavorite">
+								<span>+</span>
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-10 col-sm-offset-1 theater_1_1">
+							<hr class="theater_top_hr">
+							<div class="row">
+								<div class="col-sm-12 top_CGVregion">
+									<ul class="theater_top_Theaters text-center">
+										<c:forEach var="city" items="${cities }">
+											<a href="cgvtheaters.jf?tno=1&city=${city}">
+												<li
+												class=" text-center ${param.city eq city? 'theater_active' : '' }">${city }</li>
+											</a>
+										</c:forEach>
+									</ul>
+								</div>
+							</div>
+							<hr class="theater_top_hr_2">
+							<div class="row">
+								<div class="col-sm-12">
+									<ul class="theater_top_CGVList">
+										<c:forEach var="theater" items="${theaters }">
+											<a href="cgvtheaters.jf?tno=${theater.no }&city=${theater.city}"><li class="${(empty param.tno ? 1 : param.tno) eq theater.no ? 'theater_active2' : ''}">${theater.name }</li></a>
+										</c:forEach>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row theater_main_row">
+			<div class="col-sm-12 theater_bottom_main_col">
+				<div class="row">
+					<div class="col-sm-12 text-center theater_2_1_img">
+						<img src="/jf/photos/theater_theater.gif" alt="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 theater_3_1_mainInfoName">
+						<h1>
+							<strong>${theater.name }</strong>
+						</h1>
+					</div>
+				</div>
+				<div class="row theater_3_1_main_img_row1">
+					<div class="col-sm-12 theater_3_1_mainImg">
+						<div class="row theater_3_1_main_ImgRow">
+							<div class="col-sm-5 theater_3_1_main_info">
+								<p>
+									<strong>${theater.location } <a
+										class="theater_parking" href="">위치/주차 안내></a></strong>
+								</p>
+								<p>1544-1122</p>
+								<p>${roomsCount }관/${seatsCount }석</p>
+							</div>
+							<div class="col-sm-2 theater_3_1_main_info tmi">
+								<span id="theater_sweetbox"> SWEETBOX </span>
+							</div>
+							<div class="col-sm-5 theater_info_notice">
+								<div class="row ">
+									<div class="col-sm-3">
+										<p>공지사항</p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 ">
+										<c:forEach var="notice" items="${notices }">
+											<p>${notice.title }</p>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row theater_MIBjpg_row ">
+					<div class="col-sm-12 ">
+						<img src="/jf/photos/MIB.jpg" alt="">
+					</div>
+				</div>
+				<div class="row theater_3_1_main_img_row1">
+					<div class="col-sm-12 text-center time-parking_main-info">
+						<a href=""><span class="theater_time_parking_main_info_span"><span
+								class="glyphicon glyphicon-hand-right"></span> 상영시간표 & 위치/주차안내</span></a>
+					</div>
+				</div>
+				<div class="row theaxxter_bottom_timetable_row">
+					<div class="col-sm-10">
+						<hr class="theater_bottom_timetable_hr">
+						<div class="row theater_bottom_timetable_time">
+							<div
+								class="col-sm-1 theater_bottom_hands_div theater_bottom_hands_div_left">
+								<a href=""><span class="glyphicon glyphicon-hand-left"></span></a>
+							</div>
+							<div class="col-sm-10 theater_bottom_date_div">
+								<!--                               날짜 반복 시작-->
+								<c:choose>
+									<c:when test="${not empty monthAndDates }">
+										<c:forEach var="a" items="${monthAndDates }">
+											<a href="cgvtheaters.jf?date=${a.fullDate }&tno=${param.tno}"> <span
+												class="theater_screening_dates ${(empty param.date ? inputDate : param.date) eq a.fullDate ? 'theater_date_active' : '' }">
+													<span class="theater_bottom_dates_1"> ${a.month }월 </span>
+													<span class="theater_bottom_dates_2">${a.date }</span>
+											</span>
+											</a>
+										</c:forEach>
+										<!--                               날짜 반복 끝-->
+									</c:when>
+								</c:choose>
+
+							</div>
+							<div
+								class="col-sm-1 theater_bottom_hands_div theater_bottom_hands_div_right">
+								<a href=""> <span class="glyphicon glyphicon-hand-right"></span>
+								</a>
+							</div>
+
+							<div class="col-sm-12">
+								<hr class="theater_bottom_timetable_hr_2">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-7 theater_BN_imgDiv">
+								<img src="/jf/photos/theater_sun.PNG" alt=""> <span>조조</span>
+								<img src="/jf/photos/theater_moon.png" alt=""><span>심야</span>
+								<span class="theater_BN_info">* 시간을 클릭하시면 빠른 예매를 하실 수
+									있습니다.</span>
+							</div>
+							<div class="col-sm-5 text-right">
+								<span class="glyphicon glyphicon-info-sign"></span><span
+									class="theater_BN_info_2">관람가격 안내</span> <span
+									class="glyphicon glyphicon-info-sign"></span> <span
+									class="theater_BN_info_2">관람등급 안내</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 theater_bottom_timetable_hr_3_div">
+								<hr class="theater_bottom_timetable_hr_3">
+							</div>
+						</div>
+						<!-- 영화 1개 시간표 시작-->
+						<c:choose>
+							<c:when test="${not empty screenings }">
+								<c:forEach var="screen" items="${screenings }">
+									<div class="movie_showing_time_div">
+										<div class="row">
+											<div class="col-sm-1">
+												<img class="theater_screening_image1"
+													src="/jf/photos/theater_age_${screen.ageLimit }.PNG" alt="">
+											</div>
+											<div class="col-sm-11 thater_movie_bottom_infotable">
+												<span class="theater_bottom_movieName"><a href="/jf/movie/moviedetail.jf?mno=${screen.movieNo }">${screen.movieName }</a></span>
+												<img class="theater_screening_image2"
+													src="/jf/photos/theater_movie_showing.PNG" alt=""> <span
+													class="theater_bottom_movieInfo"> ${screen.genre }/
+													${screen.runningTime }분/ ${screen.releaseDate } 개봉 </span>
+												<!--                                2d 1관 1층, 밑에 시간표 1줄 시작-->
+												<c:forEach var="room" items="${screen.rooms}">
+													<div class="row thater_movie_bottom_infotable_2">
+														<div class="col-sm-12 thater_movie_bottom_infotable_2_1">
+															<span class="glyphicon glyphicon-play"></span>
+															${room.roomNo }관
+															<div class="theater_border_right_hr"></div>
+															총 ${room.totalSeat }석
+															
+															
+															<div class="theater_border_right_hr"></div>
+														</div>
+														<div class="col-sm-10 theater_movie_timetable_div">
+															<!-- 상영시간 반복 시작  -->
+															<c:forEach var="roomDetail" items="${room.roomDetail}">
+																<a href="">
+																	<div class="theater_movie_timetable">
+																		<div class="theater_movie_timetable_1">${roomDetail.times}</div>
+																		<div class="theater_movie_timetable_2">${roomDetail.leftSeat }석</div>
+																	</div>
+																</a>
+															</c:forEach>
+															<!-- 상영시간 반복 끝 -->
+														</div>
+													</div>
+												</c:forEach>
+												<!--                                    2d 1관 1층, 밑에 시간표 1줄 끝-->
+
+											</div>
+										</div>
+										<hr class="theater_bottom_timetable_hr_4">
+									</div>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+						<!--                        영화 1개 시간표 끝-->
+
+						<div class="theater_bottom_event_div ">
+							<div class="row ">
+								<div class="col-sm-12 text-center theater_bottom_event_img_div">
+									<img src="/jf/photos/theater_relation_event.gif" alt="">
+								</div>
+							</div>
+
+							<div class="row theater_bottom_event_imgs">
+								<a href="">
+									<div class="col-sm-4">
+										<img src="/jf/photos/theater_event_mileage.jpg" alt="">
+									</div>
+								</a> <a href="">
+									<div class="col-sm-4">
+										<img src="/jf/photos/theater_event_erand.jpg" alt="">
+									</div>
+								</a> <a href="">
+									<div class="col-sm-4">
+										<img src="/jf/photos/theater_event_citizen.jpg" alt="">
+									</div>
+								</a>
+							</div>
+
+							<div class="row theater_bottom_event_info">
+								<div class="col-sm-4 ">
+									CGV 극장별 <br> 이랜드몰 제휴 전사 프로모션
+								</div>
+								<div class="col-sm-4">
+
+									CGV 극장별 <br> [CGV 강남 23개 극장]
+								</div>
+								<div class="col-sm-4">
+									CGV 극장별 <br> [CGV 강남 외 25개극장] 서울시...
+								</div>
+							</div>
+							</a>
+							<div class="row theater_bottom_event_period">
+								<div class="col-sm-4">기간: 2019.05.22 ~ 2019.05.22</div>
+								<div class="col-sm-4">기간: 2019.05.22 ~ 2019.05.22</div>
+								<div class="col-sm-4">기간: 2019.05.22 ~ 2019.05.22</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-sm-2 theater_sideADimg">
+						<img src="/jf/photos/sidead_gozila.png" alt=""> <img
+							src="/jf/photos/sidead_giftcard.jpg" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!----- 지우지마시오 ----->
+
+	<!-- Footer -->
+	<div class="container" style="left: 50px;">
+		<div class="row" style="margin-top: 100px; position: relative;">
+			<div class="col-sm-10">
+				<ul class="footer-ul">
+					<li><a href="http://corp.cgv.co.kr/company/" target="_blank">회사소개</a></li>
+					<li><a
+						href="http://corp.cgv.co.kr/company/ir/financial/financial_list.aspx"
+						target="_blank">IR</a></li>
+					<li><a
+						href="http://corp.cgv.co.kr/company/recruit/step/default.aspx"
+						target="_blank">채용정보</a></li>
+					<li><a
+						href="http://corp.cgv.co.kr/company/advertize/ad_Default.aspx"
+						target="_blank">광고/프로모션문의</a></li>
+					<li><a
+						href="http://corp.cgv.co.kr/company/advertize/af_default.aspx"
+						target="_blank">제휴문의</a></li>
+					<li><a
+						href="http://corp.cgv.co.kr/company/advertize/bp_insert.aspx"
+						target="_blank">출점문의</a></li>
+					<li><a href="http://www.cgv.co.kr/rules/service.aspx">이용약관</a></li>
+					<li><a href="http://www.cgv.co.kr/rules/organized.aspx">편성기준</a></li>
+					<li><a href="http://www.cgv.co.kr/rules/privacy.aspx"
+						class="empha-red">개인정보처리방침</a></li>
+					<li><a href="http://www.cgv.co.kr/rules/disclaimer.aspx">법적고지</a></li>
+					<li><a href="http://www.cgv.co.kr/rules/emreject.aspx">이메일주소무단수집거부</a></li>
+					<li><a href="http://www.cgv.co.kr/company/coexist.aspx">상생경영</a></li>
+					<li><a href="http://www.cgv.co.kr/guide/sitemap.aspx">사이트맵</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-2">
+				<div class="share">
+					<a href="https://www.facebook.com/CJCGV" target="_blank"
+						class="facebook" title="새창"><img
+						src="/jf/photos/footer_facebook.PNG"></a> <a
+						href="https://twitter.com/cj_cgv" target="_blank" class="twitter"
+						title="새창"><img src="/jf/photos/footer_twitter.PNG"></a> <a
+						href="https://www.instagram.com/cgv_korea/" target="_blank"
+						class="instagram" title="새창"><img
+						src="/jf/photos/footer_instargram.PNG"></a>
+				</div>
+			</div>
+		</div>
+		<hr />
+		<div class="row address">
+			<div class="col-sm-2">
+				<img src="/jf/photos/footer_CJ_CGV_logo.jpg" width="100%">
+			</div>
+			<div class="col-sm-8">
+				<p>(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)</p>
+				<p class="vl">
+					<span>대표이사 : 최병환</span><span>사업자등록번호 : 104-81-45690</span><span>통신판매업신고번호
+						: 2017-서울용산-0662</span>
+				</p>
+				<p class="vl">
+					<span>개인정보보호 책임자 : 정종민</span><span>대표이메일 :
+						cjcgvmaster@cj.net</span><span>CGV고객센터 : 1544-1122</span>
+				</p>
+			</div>
+			<div class="col-sm-2">
+				<div class="familysite">
+					<label for="familysite" class="hidden">CJ그룹 계열사 바로가기</label> <select
+						id="familysite">
+						<option value="">계열사 바로가기</option>
+						<optgroup label="CJ그룹">
+							<option value="http://www.cj.net/">CJ주식회사</option>
+						</optgroup>
+						<optgroup label="엔터테인먼트 &amp; 미디어">
+							<option value="http://www.cjenm.com/">CJ ENM (E&amp;M)</option>
+							<option value="http://www.cgv.co.kr/">CJ CGV</option>
+							<option value="http://www.cjhello.com/">CJ Hello</option>
+							<option value="http://www.cjpowercast.com/">CJ파워캐스트</option>
+						</optgroup>
+						<optgroup label="식품 &amp; 식품서비스">
+							<option value="https://www.cj.co.kr/kr/index">CJ제일제당
+								(식품)</option>
+							<option value="http://www.cjfreshway.com/">CJ프레시웨이</option>
+							<option value="http://www.cjfoodville.co.kr/">CJ푸드빌</option>
+							<option value="http://www.md1.co.kr/">CJ엠디원</option>
+						</optgroup>
+						<optgroup label="생명공학">
+							<option value="https://www.cj.co.kr/kr/index">CJ제일제당
+								(바이오)</option>
+						</optgroup>
+						<optgroup label="신유통">
+							<option value="http://display.cjmall.com">CJ ENM (오쇼핑)</option>
+							<option value="http://www.cjlogistics.com">CJ대한통운</option>
+							<option value="http://www.cjtelenix.com/">CJ텔레닉스</option>
+							<option value="http://www.oliveyoung.co.kr/store/main/main.do">CJ올리브네트웍스
+								(올리브영)</option>
+						</optgroup>
+						<optgroup label="인프라">
+							<option value="http://www.cjenc.co.kr/">CJ대한통운 (건설)</option>
+							<option value="http://www.cjolivenetworks.co.kr/itbusiness/">CJ올리브네트웍스
+								(IT사업)</option>
+						</optgroup>
+					</select>
+					<button type="button" title="새창" onclick="goFamilySite()">GO</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<p class="copyright">© CJ CGV. All Rights Reserved</p>
+		</div>
+	</div>
+	<!-- footer -->
+</body>
+</html>

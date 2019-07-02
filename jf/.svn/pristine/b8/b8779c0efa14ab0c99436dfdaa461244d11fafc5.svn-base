@@ -1,0 +1,66 @@
+package kr.co.hta.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.hta.movies.dao.TheaterDao;
+import kr.co.hta.vo.Theater;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+import kr.co.jhta.mvc.view.JSONView;
+
+@Controller
+public class QnaController {
+	
+	TheaterDao theaterDao = new TheaterDao();
+	
+	//1대1문의 답변 페이지
+	@RequestMapping("/member/questionanserform.jf")
+	public ModelAndView questionanserform(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/member/questionanserform.jsp");
+
+		return mav;
+	}
+
+	//1대1문의 리스트 페이지
+	@RequestMapping("/member/questionlist.jf")
+	public ModelAndView questionlist(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/member/questionlist.jsp");
+
+		return mav;
+	}
+	
+	//1대1문의하기 디테일 페이지
+	@RequestMapping("/member/questiondetail.jf")
+	public ModelAndView questiondetail(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/member/questiondetail.jsp");
+		
+		List<String> cities = theaterDao.getAllCities();
+		
+		mav.addAttribute("cities", cities);
+		
+		return mav;
+	}
+	
+	// ajax로 지역에 따른 극장 가져와서 보여주기
+	@RequestMapping("/member/showtheaters.jf")
+	public ModelAndView showtheaters(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		// JSON타입으로 데이터를 내려주기
+		mav.setView(new JSONView());
+		// xhr 요청 uri로 보내준 city 꺼내기
+		String city = req.getParameter("city");
+		// DB에서 city에 해당하는 극장 리스트 가져오기
+		List<Theater> theaters = theaterDao.getTheaterByCity(city);
+		// jsp로 다시 보내주기
+		mav.addAttribute("theaters", theaters);
+
+		return mav;
+	}
+}

@@ -1,0 +1,47 @@
+package kr.co.hta.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import kr.co.hta.movies.dao.MyTheaterDao;
+import kr.co.hta.movies.dao.TheaterDao;
+import kr.co.hta.vo.Member;
+import kr.co.hta.vo.MyTheater;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class MyTheaterController {
+	
+	MyTheaterDao myTheaterDao = new MyTheaterDao();
+	TheaterDao theaterDao = new TheaterDao();
+
+	@RequestMapping("/member/Mytheater.jf")
+	public ModelAndView MyTheater(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/member/myTheater.jsp");
+		
+		HttpSession session = req.getSession();
+		Member member = (Member) session.getAttribute("LOGINMEMBER");
+		
+		if(member == null) {
+			mav.setViewName("redirect:login.jf?result=default");
+			return mav;
+		}
+		
+		// 자주가는 극장
+		String memberId = member.getId();
+		List<MyTheater> MyTheaters = (List<MyTheater>) myTheaterDao.selectMyTheatersById(memberId);
+		mav.addAttribute("MyTheaters", MyTheaters);
+		
+		//도시명
+		List<String> cities = theaterDao.getAllCities();
+		mav.addAttribute("cities", cities);
+		
+		return mav;
+	}
+}

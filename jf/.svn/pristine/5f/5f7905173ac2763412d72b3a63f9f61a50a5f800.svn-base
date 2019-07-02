@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<select id="selectAllQuestion" resultClass="Question">
+		SELECT A.QUESTION_NO 				no
+				, A.QUESTION_TITLE 			title
+				, A.QUESTION_CONTENTS 		contents
+				, A.QUESTION_CREATE_DATE 	createDate
+				, A.QUESTION_STATUS 		status
+				, B.THEATER_NAME			theaterName
+				, A.ANSWER_CONTENT			answerContents
+				, A.ANSWER_CREATE_DATE		answerCreateDate
+				, C.MEMBER_NICKNAME			nickname
+		FROM JF_QUESTIONS A, JF_THEATERS B,JF_MEMBERS C
+		WHERE A.THEATER_NO = B.THEATER_NO
+		AND A.MEMBER_ID = C.MEMBER_ID
+		order by QUESTION_NO 	asc	
+	</select>
+	
+	<select id="selectQuestionByNo" parameterClass="int" resultClass="Question">
+		SELECT  A.QUESTION_TITLE 			title
+				, A.QUESTION_NO 				no
+				, A.QUESTION_CONTENTS 		contents
+				, A.QUESTION_CREATE_DATE 	createDate
+				, A.QUESTION_STATUS 		status
+				, B.THEATER_NAME			theaterName
+				, A.ANSWER_CONTENT			answerContents
+				, A.ANSWER_CREATE_DATE		answerCreateDate
+				, C.MEMBER_NICKNAME			nickname
+		FROM JF_QUESTIONS A, JF_THEATERS B,JF_MEMBERS C
+		WHERE A.THEATER_NO = B.THEATER_NO
+		AND A.MEMBER_ID = C.MEMBER_ID
+		AND A.QUESTION_NO = #value#
+	</select>
+	
+	<update id="updateQuestion" parameterClass="Question" >
+		Update jf_Questions
+		set
+			QUESTION_STATUS = '답변완료'		
+			, ANSWER_CONTENT = #answerContents#			
+			, ANSWER_CREATE_DATE = #answerCreateDate#		
+		where QUESTION_NO = #no#
+	</update>
+	
+</sqlMap>

@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <div class="container">
+       <div class="row">
+           <div class="col-sm-12 result-title">
+               <img src="http://img.cgv.co.kr/R2014/images/title/h3_search_results.gif"/>
+           </div>
+           <p style="text-align: center">아래의 선택조건에 해당하는 영화가 <strong>총 6,979건</strong> 검색되었습니다.</p>
+       </div>
+       <div class="row">
+           <div class="col-sm-12">
+                  <dl class="spec">
+                      <dt>장르</dt>
+                      <dl>${finder.genre }</dl>
+                      <dt>제작국가</dt>
+                      <dl>${finder.country }</dl>
+                      <dt>전체 이용가</dt>
+                      <dl>${finder.age }세 관람가</dl>
+                      <dt>제작년도</dt>
+                      <dl>${finder.startDate }년 ~ ${finder.endDate }년</dl>
+                  </dl>
+           </div>
+       </div>
+       <div class="row result-chart">
+           <div class="col-sm-12">
+
+           <c:forEach var="finders" items="${finderMovies }">
+               <div class="col-sm-3 list-content">
+                    <a href="/movies/detail-view/?midx=81745">
+                            <span class="thumb-image">
+                                <img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81745/81745_185.jpg" alt="악인전 포스터" onerror="errorImage(this)">
+                                <span class="ico-grade grade-${finders.ageLimit }">청소년 관람불가</span>
+                            </span>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">${finders.korTitle }</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>${finders.reservationRate }%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">${finders.goldenEgg }%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                <fmt:formatDate value="${finders.releaseDate }" pattern="yyyy-MM-dd"/> 
+                                <span>개봉</span>
+                            </strong>
+                        </span>
+                        
+                        <span class="like"> 
+                            <button class="btn-like" value="81745">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>${finders.wishList }</i><span>명이 선택</span></strong> 
+                            </span>
+                        </span>
+                    </div>
+                </div>
+           </c:forEach>
+           
+                
+           </div>
+       </div>
+    </div>

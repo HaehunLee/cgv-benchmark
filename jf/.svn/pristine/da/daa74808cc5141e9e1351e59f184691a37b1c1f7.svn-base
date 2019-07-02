@@ -1,0 +1,36 @@
+function goMyGpa(event,member,from){
+	event.preventDefault();
+	if(member == 2){
+		var result = confirm("로그인이 필요한 서비스입니다. 로그인 페이지로 이동하시겠습니까?");
+   		if(result && from == 'myMovieGpa'){
+   			$(".GPA1").removeClass("gpa_active");
+   			$(".GPA2").addClass("gpa_active");
+			location.href = '/jf/member/login.jf?from='+from+'&toggleNo=2';
+			return;
+		}
+	} else{
+    		location.href = '/jf/member/mymoviegpa.jf?toggleNo=2';
+	}
+}
+
+function toggleLike(no){
+	if(no ==1){
+		$('.GOB1').addClass('goodOrBad_selected');
+		$('.GOB2').removeClass('goodOrBad_selected');
+		$('.hiddenText').attr('value',1);
+		return;
+	}
+	if(no ==0){
+		$('.GOB2').addClass('goodOrBad_selected');
+		$('.GOB1').removeClass('goodOrBad_selected');
+		$('.hiddenText').attr('value',2);
+		return;
+	}
+}
+
+var msgbox4 = document.getElementById("msg-box4");
+msgbox4.style.fontSize = "13px";
+msgbox4.style.color = "gray";
+
+
+

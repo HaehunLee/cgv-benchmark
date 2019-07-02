@@ -1,0 +1,45 @@
+package kr.co.hta.vo;
+
+import java.util.Date;
+
+public class Reservation {
+
+	private String memberId;
+	private int screeningNo;
+	private Date reservationDate;
+	private String reservationYn;
+	private int reservationCount;
+	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public int getScreeningNo() {
+		return screeningNo;
+	}
+	public void setScreeningNo(int screeningNo) {
+		this.screeningNo = screeningNo;
+	}
+	public Date getReservationDate() {
+		return reservationDate;
+	}
+	public void setReservationDate(Date reservationDate) {
+		this.reservationDate = reservationDate;
+	}
+	public String getReservationYn() {
+		return reservationYn;
+	}
+	public void setReservationYn(String reservationYn) {
+		this.reservationYn = reservationYn;
+	}
+	public int getReservationCount() {
+		return reservationCount;
+	}
+	public void setReservationCount(int reservationCount) {
+		this.reservationCount = reservationCount;
+	}
+	
+	
+}

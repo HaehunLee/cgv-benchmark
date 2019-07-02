@@ -1,0 +1,497 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>영화 그 이상의 감동. CGV</title>
+  <link rel="shortcut icon" href="/jf/photos/cj_logo.ico" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/jf/resources/bootstrap/css/bootstrap.min.css">
+  <script src="/jf/resources/bootstrap/js/jquery.min.js"></script>
+  <script src="/jf/resources/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/jf/resources/bootstrap/css/reservation.css">
+</head>
+<body>
+<%@ include file="../../common/navigation.jsp" %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-right return-res">
+            <button class="btn btn-default" style="background-color: #f2f0e4">
+                <span class="glyphicon glyphicon-repeat"></span>예매 다시하기
+            </button>
+        </div>
+    </div>
+    <div class="row step">
+        <div class="col-sm-3 col-section">
+            <div class="row">
+                <div class="col-sm-12 text-center col-head">
+                    <h4>영화</h4>
+                </div>
+            </div>
+            <div class="row col-body">
+                <div class="col-sm-12">
+                	<div class="row">
+	                    <div class="col-sm-12 movie-select">
+	                        <a href="" class="movie-select on">예매율순</a>
+	                        <a href="">가나다순</a>
+	                    </div>	
+                	</div>
+                	<div class="row">
+	                    <div class="col-sm-12" style="height: 500px; overflow: auto;">
+	                        <ul id="movie-menu">
+	                        <c:forEach var="movie" items="${movies }">
+	                            <li onclick="showCities(this, ${movie.no })">
+	                                <span class="ico-grade grade-${movie.ageLimit }"></span><a>${movie.korTitle }</a>
+	                            </li>                        
+	                        </c:forEach>
+	                        </ul>
+	                    </div>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-section">
+            <div class="row">
+                <div class="col-sm-12 text-center col-head">
+                    <h4>극장</h4>
+                </div>
+            </div>
+            <div class="row col-body">
+                <div class="col-sm-12">
+            <c:if test="${not empty LOGINMEMBER }">
+                    <div class="favorite-cgv-title">
+                        <p>자주가는 CGV</p>
+                    </div>
+                    <div class="favorite-cgv">
+                        <ul class="theaters">
+                            <li><a>CGV창원더시티</a></li>
+                            <li><a>CGV창원</a></li>
+                            <li><a>CGV천호</a></li>
+                            <li><a>CGV피카디리1958</a></li>
+                            <li><a>CGV용산아이파크몰</a></li>
+                        </ul>
+                    </div>
+			</c:if>
+                    <div class="row theater-list">
+                        <div class="col-sm-6 theater-area-list">
+                            <ul id="city-box">
+                            <c:forEach var="city" items="${cities }">
+                            	<li><a>
+                            		<span>${city }</span>
+                            		<span> (0)</span>
+                            	</a></li>
+                            </c:forEach>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 theater-cgv-list">
+                            <ul id="theater-box"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1 col-section">
+            <div class="row">
+                <div class="col-sm-12 text-center col-head">
+                    <h4>날짜</h4>
+                </div>
+            </div>
+            <div class="row col-body" id="month-day-box"></div>
+        </div>
+        <div class="col-sm-5 col-section">
+            <div class="row">
+                <div class="col-sm-12 text-center col-head">
+                    <h4>시간</h4>
+                </div>
+            </div>
+            <div class="row col-body">
+                <div class="col-sm-12">
+                    <div class="time-option">
+                        <span class="ico-sun"></span>조조
+                        <span class="ico-moon"></span> 심야
+                    </div>
+                    <div class="placeholder">
+                        <div class="row">
+                            <div class="col-sm-12">
+		        	            <p style="text-align: center;">영화, 극장, 날짜를 선택해주세요.</p>
+                                <div class="col-sm-12 theater">
+                                    <strong>1관</strong> (총 4석)
+                                    <ul class="res-ul">
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 theater">
+                                    <strong>2관</strong> (총 4석)
+                                    <ul class="res-ul">
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 theater">
+                                    <strong>3관</strong> (총 4석)
+                                    <ul class="res-ul">
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 theater">
+                                    <strong>4관</strong> (총 4석)
+                                    <ul class="res-ul">
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>
+                                        </a></li>
+                                        <li style="width: 33%; float: left;"><a>
+                                            <span class="res-time">16:00</span>
+                                            <span class="res-seat">4석</span>    
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%@ include file="../../common/footer.jsp" %>
+
+<script>
+	function showCities(el, movieNo) {
+		var xhr = new XMLHttpRequest();
+		
+		var movies = document.querySelectorAll("#movie-menu li");
+		for(var i=0; i<movies.length; i++) {
+			movies[i].classList.remove("selected-movie");
+		}
+		el.classList.add("selected-movie");
+		
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				var infos = JSON.parse(xhr.responseText);
+				
+				console.log(infos);
+				
+				var htmlContents = "";
+				
+				
+				htmlContents += "<li onclick=\"showTheaters(this, " + movieNo + ", '서울')\"><a><span>";
+				htmlContents += infos.cities[0];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].seoul + ")";
+				}
+				htmlContents += "</span></a></li>";
+				htmlContents += "<li onclick=\"showTheaters(this, " + movieNo + ", '부산/울산')\"><a><span>";
+				htmlContents += infos.cities[1];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].bsus + ")";
+				}
+				htmlContents += "</span></a></li>";
+				htmlContents += "<li onclick=\"showTheaters(this, " + movieNo + ", '인천')\"><a><span>";
+				htmlContents += infos.cities[2];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].incheon + ")";
+				}
+				htmlContents += "</span></a></li>";
+				htmlContents += "<li onclick=\"showTheaters(this, " + movieNo + ", '광주/전라/제주')\"><a><span>";
+				htmlContents += infos.cities[3];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].gjj + ")";
+				}
+				htmlContents += "</span></a></li>";
+				htmlContents += "<li onclick=\"showTheaters(this," + movieNo + ", '강원')\"><a><span>";
+				htmlContents += infos.cities[4];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].kangwon + ")";
+				}
+				htmlContents += "</span></a></li>";
+				htmlContents += "<li onclick=\"showTheaters(this, " + movieNo + ", '대전/충청')\"><a><span>";
+				htmlContents += infos.cities[5];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].djcc + ")";
+				}
+				htmlContents += "</span></a></li>";
+				htmlContents += "<li onclick=\"showTheaters(this, " + movieNo + ", '대구')\"><a><span>";
+				htmlContents += infos.cities[6];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].daegu + ")";
+				}
+				htmlContents += "</span></a></li>";
+				htmlContents += "<li onclick=\"showTheaters(this, " + movieNo + ", '경상')\"><a><span>";
+				htmlContents += infos.cities[7];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].kyeongsang + ")";
+				}
+				htmlContents += "</span></a></li>";
+				htmlContents += "<li onclick=\"showTheaters(this, " + movieNo + ", '경기')\"><a><span>";
+				htmlContents += infos.cities[8];
+				if(infos.counts.length == 0) {
+					htmlContents += " (0)";
+				} else {
+					htmlContents += " (" + infos.counts[0].kyeongi + ")";
+				}
+				htmlContents += "</span></a></li>";
+				
+				document.getElementById('city-box').innerHTML = htmlContents;
+			}
+		}
+		xhr.open("GET", "selectmovie.jf?mno=" + movieNo);
+		xhr.send();
+	}
+	
+	function showTheaters(el, movieNo, city) {
+		var xhr = new XMLHttpRequest();
+		
+		
+		var cities = document.querySelectorAll("#city-box li");
+		for (var i=0; i<cities.length; i++) {
+			cities[i].classList.remove("selected");
+		}
+		el.classList.add("selected");
+		
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				var theaters = JSON.parse(xhr.responseText);
+				theaters.reverse();
+				console.log(theaters);
+				
+				var htmlContents = "";
+				
+				for(var i=0; i<theaters.length; i++) {
+					htmlContents += "<li onclick=\"showDates(this, " + movieNo + ", '" + theaters[i] + "')\"><a>";
+					htmlContents += theaters[i];
+					htmlContents += "</a></li>";
+				}
+				
+				document.getElementById('theater-box').innerHTML = htmlContents;
+			}
+		}
+		xhr.open("GET", "selectcity.jf?mno=" + movieNo + "&city=" + city);
+		xhr.send();
+	}
+
+	function showDates(el, movieNo, theaterName) {
+		var xhr = new XMLHttpRequest();
+		
+		var theaters = document.querySelectorAll('#theater-box li');
+		for(var i=0; i<theaters.length; i++) {
+			theaters[i].classList.remove('selected-city');
+		}
+		el.classList.add('selected-city');
+		
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				var dates = JSON.parse(xhr.responseText);
+				
+				// console.log(dates);
+				
+				var dateArray = [];
+				
+				for(var i=0; i<dates.length; i++) {
+					var date = dates[i].split('-');
+					dateArray.push(date);
+				}
+				
+				console.log("dateArray배열", dateArray);
+				
+				var firstmonth = dateArray[0][0];
+				var months = [firstmonth];
+				for(var i=1; i<dateArray.length; i++) {
+					if(firstmonth == dateArray[i][0]) {
+						continue;
+					} else {
+						months.push(dateArray[i][0]);
+						firstmonth == dateArray[i][0];
+					}
+				}
+				
+				var days = [];
+				for(var i=0; i<dateArray.length; i++) {
+					days.push({month: dateArray[i][0], day: dateArray[i][1], week: dateArray[i][2]});
+				}
+				
+				
+				console.log("dates", dates);
+				
+				// console.log("months배열", months);
+				console.log("days배열", days);
+				
+				var htmlContents = "";
+				
+				for(var i=0; i<months.length; i++) {
+					htmlContents += "<div class=\"date-list\"><div>";
+					htmlContents += "<div class=\"year-month\">";
+					htmlContents += "<div class=\"year\">2019</div>";
+					htmlContents += "<div class=\"month\"><span>";
+					htmlContents += months[i];
+					htmlContents += "</span></div></div></div>";
+					htmlContents += "<ul class=\"dayweek-day\" id=\"day-box\">";
+					for(var j=0; j<days.length; j++) {
+						if(days[j].month == months[i]) {
+							htmlContents += "<li onclick=\"showTimes(this, " + movieNo + ", '" + dates[j] + "', '" + theaterName + "')\">"
+							if(days[j].week == '토') {
+								htmlContents += "<a class=\"saturday\"><span class=\"dayweek\">";
+							} else if(days[j].week == '일') {
+								htmlContents += "<a class=\"sunday\"><span class=\"dayweek\">";
+							} else {
+								htmlContents += "<a><span class=\"dayweek\">";
+							}
+							htmlContents += days[j].week;
+							htmlContents += "</span>";
+							htmlContents += "<span class=\"day\">";
+							htmlContents += days[j].day;
+							htmlContents += "</span></a>";
+							htmlContents += "</li>";
+						}
+					}
+					htmlContents += "</ul></div>";
+				}
+				
+				document.getElementById('month-day-box').innerHTML = htmlContents;
+			}
+		}
+		
+		xhr.open("GET", "selecttheater.jf?mno=" + movieNo + "&tname=" + theaterName);
+		xhr.send();
+	}
+	
+	function showTimes(el, movieNo, screeningDate, theaterName) {
+		var xhr = new XMLHttpRequest();
+		
+		var dates = document.querySelectorAll('#day-box li');
+		for(var i=0; i<dates.length; i++) {
+			dates[i].classList.remove('selected-city');
+		}
+		el.classList.add('selected-city');
+		
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				var times = JSON.parse(xhr.responseText);
+				
+				console.log(times);
+				
+				var htmlContents = "";
+				
+				
+				
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+				htmlContents += "";
+			}
+		}
+		
+		xhr.open("GET", "selectdate.jf?mno=" + movieNo + "&sdate=" + screeningDate + "&tname=" + theaterName);
+		xhr.send();
+	}
+</script>
+</body>
+</html>

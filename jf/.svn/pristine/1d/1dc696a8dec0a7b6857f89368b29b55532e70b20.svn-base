@@ -1,0 +1,90 @@
+package kr.co.hta.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.hta.movies.dao.MovieDao;
+import kr.co.hta.movies.dao.ReservationDao;
+import kr.co.hta.movies.dao.TheaterDao;
+import kr.co.hta.vo.Movie;
+import kr.co.hta.vo.Theater;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class ReservationController {
+	
+	MovieDao movieDao = new MovieDao();
+	TheaterDao theaterDao = new TheaterDao();
+	ReservationDao resDao = new ReservationDao();
+
+	@RequestMapping("/reservation/reservation.jf")
+	public ModelAndView reservation(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/reservation/reservation.jsp");
+		
+		List<Movie> movies = resDao.getAllMoviesRankByResRate();
+		
+		mav.addAttribute("movies", movies);
+
+		return mav;
+	}
+	
+	@RequestMapping("/reservation/movietimetable.jf")
+	public ModelAndView movietimetable(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		int mno = 0;
+		try {
+			mno = Integer.parseInt(req.getParameter("mno"));
+		} catch(Exception e){
+			Movie movie = resDao.getRank1MovieByResRate();
+			mno = movie.getNo();
+		}
+		Movie movie = movieDao.getMovieByNo(mno);
+		
+		String city = req.getParameter("city");
+		if(city == null) {
+			city = "서울";
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/reservation/movietimetable.jsp");
+		
+		List<Movie> movies = resDao.getAllMoviesRankByResRate();
+		List<Theater> theaters = theaterDao.getAllTheaters();
+		List<String> cities = theaterDao.getAllCities();
+		
+		
+		mav.addAttribute("theaters", theaters);
+		mav.addAttribute("cities", cities);
+		mav.addAttribute("movies", movies);
+		mav.addAttribute("findMovie", movie);
+
+		return mav;
+	}
+	
+	@RequestMapping("/reservation/theatertimetable.jf")
+	public ModelAndView theatertimetable(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		String city = req.getParameter("city");
+		if(city == null) {
+			city = "서울";
+		}
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/reservation/theatertimetable.jsp?city=" + city);
+		
+		List<Theater> theaters = theaterDao.getAllTheaters();
+		List<String> cities = theaterDao.getAllCities();
+		
+		
+		mav.addAttribute("theaters", theaters);
+		mav.addAttribute("cities", cities);
+		
+		return mav;
+	}
+}

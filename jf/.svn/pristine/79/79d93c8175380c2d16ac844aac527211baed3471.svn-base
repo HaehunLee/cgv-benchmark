@@ -1,0 +1,8 @@
+package kr.co.hta.vo;
+
+public class ScreeningTime {
+	private String movieName;
+	private String genre;
+	private String runningTime;
+	private String releaseDate;
+}

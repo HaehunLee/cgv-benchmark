@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+
+	<select id="selectDiaryMovieDetailById" parameterClass="string" resultClass="DiaryMovieDetail">
+		select 
+			ROW_NUMBER() OVER (ORDER BY SC.SCREENING_DATE DESC) NO  	DetailNo
+			, R.RESERVATION_COUNT										reservationCount
+			, SC.SCREENING_DATE											screeningDate
+			, M.MOVIE_POSTER											poster
+			, SCR.ROOM_NAME												roomName
+			, M.MOVIE_KORTITLE											korTitle
+			, M.MOVIE_ENGTITLE											engTitle
+			, SC.SCREENING_TIME											screeningTime
+			, T.THEATER_NAME											TheaterName
+		from JF_RESERVATIONS R,JF_MEMBERS MEM, JF_SCREENINGS SC, JF_MOVIES M, JF_SCREENING_ROOMS SCR,JF_THEATERS T 
+		where R.SCREENING_NO = SC.SCREENING_NO
+		AND R.MEMBER_ID = MEM.MEMBER_ID
+		AND	SC.MOVIE_NO = M.MOVIE_NO
+		AND SCR.THEATER_NO = T.THEATER_NO
+		AND SCR.ROOM_NO = SC.ROOM_NO
+		AND MEM.member_Id = #value#
+	</select>
+	
+
+</sqlMap>

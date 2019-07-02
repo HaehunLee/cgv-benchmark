@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+		
+	<select id="selectAllTheaters" resultClass="Theater">
+		select 
+			THEATER_NO no,
+			THEATER_NAME name,
+			THEATER_LOCATION location, 
+			THEATER_TEL tel, 
+			THEATER_ROOM room,
+			THEATER_SEAT seat,
+			THEATER_TRAFFIC_INFO trafficInfo,
+			THEATER_PARKING_INFO parkingInfo,
+			THEATER_CITY city,
+			THEATER_PHOTO photo
+		from
+			jf_theaters
+	</select>
+
+</sqlMap>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<select id="getAllMembers" resultClass="Member">
+		select
+		    MEMBER_ID id,
+		    MEMBER_PWD pwd,
+		    MEMBER_NAME name,
+		    MEMBER_NICKNAME nickName,
+		    MEMBER_PHONE phone,
+		    MEMBER_EMAIL email,
+		    MEMBER_BIRTH birth,
+		    MEMBER_GENDER gender,
+		    MEMEBER_POINT point,
+		    MEMBER_CREATE_DATE createDate,
+		    MEMBER_TYPE type,
+		    MEMBER_USED_YN usedYn
+	from jf_members 
+	</select>
+	
+	<select id="getMemberById" parameterClass="string" resultClass="Member">
+		select
+		    MEMBER_ID id,
+		    MEMBER_PWD pwd,
+		    MEMBER_NAME name,
+		    MEMBER_NICKNAME nickName,
+		    MEMBER_PHONE phone,
+		    MEMBER_EMAIL email,
+		    MEMBER_BIRTH birth,
+		    MEMBER_GENDER gender,
+		    MEMEBER_POINT point,
+		    MEMBER_CREATE_DATE createDate,
+		    MEMBER_TYPE type,
+		    MEMBER_USED_YN usedYn
+		from jf_members
+		where member_id = #value# 
+	</select>
+	<insert id="insertMember" parameterClass="Member">
+		insert into jf_members
+			(
+			MEMBER_ID,
+			MEMBER_PWD,
+			MEMBER_NAME,
+			MEMBER_NICKNAME,
+			MEMBER_PHONE,
+			MEMBER_EMAIL,
+			MEMBER_BIRTH,
+			MEMBER_GENDER
+			)
+		values
+			(
+			#id#,#pwd#,#name#,#nickName#,#phone#,#email#,#birth#,#gender#
+			)
+	</insert>
+</sqlMap>

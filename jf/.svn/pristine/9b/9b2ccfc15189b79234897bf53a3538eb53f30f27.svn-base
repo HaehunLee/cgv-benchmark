@@ -1,0 +1,26 @@
+package kr.co.hta.movies.dao;
+
+
+import java.util.List;
+
+import com.ibatis.sqlmap.client.SqlMapClient;
+
+import kr.co.hta.util.IbatisUtils;
+import kr.co.hta.vo.Event;
+import kr.co.hta.vo.Notice;
+
+public class NoticeDao {
+	
+	private SqlMapClient sqlMap = IbatisUtils.getSqlMap();
+	
+	public void insertNotice(Notice notice) throws Exception {
+		sqlMap.insert("insertNotice", notice);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Notice> selectAllNotice() throws Exception {
+		return (List<Notice>)sqlMap.queryForList("selectAllNotice");
+	}
+	
+	
+}

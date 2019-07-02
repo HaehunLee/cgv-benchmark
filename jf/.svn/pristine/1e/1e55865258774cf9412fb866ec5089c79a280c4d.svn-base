@@ -1,0 +1,40 @@
+package kr.co.hta.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.hta.movies.dao.MovieChartDao;
+import kr.co.hta.vo.Movie;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class MovieController {
+
+	MovieChartDao chartDao = new MovieChartDao();
+	
+	@RequestMapping("/movie/chart.jf")
+	public ModelAndView chart(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/movie/chart.jsp");
+		
+		Movie rank1movie = chartDao.get1RankMovieByGPA();
+		mav.addAttribute("rank1", rank1movie);
+		
+		List<Movie> movies = chartDao.select2to8MoviesRankByGpa();
+		mav.addAttribute("movies", movies);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/movie/finder.jf")
+	public ModelAndView finder(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/movie/finder.jsp");
+
+		return mav;
+	}
+}

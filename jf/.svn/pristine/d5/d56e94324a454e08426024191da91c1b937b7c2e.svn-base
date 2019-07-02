@@ -1,0 +1,130 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/jf/resources/css/bootstrap.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/GPA.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/main.css">
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/chart.css">
+</head>
+<body>
+<%@include file="../../common/navigation.jsp" %>
+<div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h1 class="h1-title">무비차트</h1>
+                </div>
+            </div>
+       		<input type="hidden" id="hiddenvalue" value="">
+            <div class="row movie-chart">
+                <div class="col-sm-12" style="text-align: right">
+                    <select name="sort" id="familysite" onchange="document.getElementById('hiddenvalue').value = this.options[this.selectedIndex].value">
+                        <!-- hidden 만들어서 값 -->
+                        <option value="1" ${param.sort eq '1' ? 'selected' : '' }>예매율순</option>
+                        <option value="2" ${param.sort eq '2' ? 'selected' : '' }>평점순</option>
+                        <option value="3" ${param.sort eq '3' ? 'selected' : '' }>관객순</option>
+                    </select>
+                    <button type="button" title="새창" onclick="search()">GO</button>
+                </div>
+                <!-- sort 정렬 스크립트 -->
+                <script>
+                	function search() {
+                		var sort = document.getElementById('hiddenvalue').value;
+                		console.log("sort", sort);
+                		location.href="chart.jf?sort=" + sort;
+                	}
+                </script>
+				<!-- -------------- -->
+           <div class="row chart-list">
+                <div class="col-sm-3 list-content">
+                    <strong class="rank rank-first">NO.1</strong>
+                    <a href="/movies/detail-view/?midx=81749">
+                            <span class="thumb-image">
+                                <a href="/jf/movie/moviedetail.jf?mno=${movie.no }"><img class="aa" src="/jf/photos/movieposters/${rank1.poster }" alt="어벤져스: 엔드게임 포스터"></a>
+                                <span class="ico-grade grade-${rank1.ageLimit }">${rank1.ageLimit }세 이상</span>
+                            </span>
+                            <strong class="no1">1위</strong>
+                    </a>
+                    <div class="box-contents">
+                        <a href="">
+                            <strong class="title">${rank1.korTitle }</strong>
+                        </a>
+
+                        <div class="score">
+                            <strong class="percent">예매율<span>${rank1.reservationRate }%</span></strong>
+                            <div class="egg-gage small">
+                                <span class="egg great"></span>
+								<span class="percent">${rank1.goldenEgg }%</span>
+							</div>
+                        </div>
+
+                        <span class="txt-info">
+                            <strong>
+                                <fmt:formatDate value="${rank1.releaseDate }" pattern="yyyy-MM-dd"/> 
+                                <span>개봉</span>
+                                
+                            </strong>
+                        </span>
+                        <span class="like"> 
+                            <button class="btn-like" onclick="/jf/member/process_addWishList.jf?mno=${ranks1.no}" value="81749">영화 찜하기</button>
+                            <span class="count"> 
+                                <strong><i>${rank1.wishList }</i><span>명이 선택</span></strong> 
+                            </span>
+                            <a class="link-reservation" href="">예매</a>
+                        </span>
+                    </div>
+                </div>
+                
+		             <c:forEach var="m" begin="0" end="100" varStatus="status" items="${movies }">
+		                <div class="col-sm-3 list-content">
+		                    <strong class="rank">NO.${status.index+2}</strong>
+		                    <a href="/movies/detail-view/?midx=81745">
+		                            <span class="thumb-image">
+		                                <a href="/jf/movie/moviedetail.jf?mno=${m.no }"><img class="aa" src="/jf/photos/movieposters/${m.poster }" alt="${m.poster }"></a>
+		                                <span class="ico-grade grade-${m.ageLimit }">청소년 관람불가</span>
+		                            </span>
+		                    </a>
+		                    <div class="box-contents">
+		                        <a href="">
+		                            <strong class="title">${m.korTitle }</strong>
+		                        </a>
+		
+		                        <div class="score">
+		                            <strong class="percent">예매율<span>${m.reservationRate }%</span></strong>
+		                            <div class="egg-gage small">
+		                                <span class="egg great"></span>
+										<span class="percent">${m.goldenEgg }%</span>
+									</div>
+		                        </div>
+		
+		                        <span class="txt-info">
+		                            <strong>
+		                            <fmt:formatDate value="${m.releaseDate }" pattern="yyyy-MM-dd"/>
+		                                <span>개봉</span>
+		                            </strong>
+		                        </span>
+		                        
+		                        <span class="like"> 
+		                            <a href="/jf/member/process_addWishList.jf?mno=${m.no}" class="btn-like" value="81745">영화 찜하기</a>
+		                            <span class="count"> 
+		                                <strong><i>${m.wishList }</i><span>명이 선택</span></strong>      
+		                            </span>
+		                            <a class="link-reservation" href="">예매</a>
+		                        </span>
+		                    </div>
+		                </div>
+		            </c:forEach>
+  			</div>
+  		</div>
+ </div>
+<%@include file="../../common/footer.jsp" %>
+</body>
+</html>

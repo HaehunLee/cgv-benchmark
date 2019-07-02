@@ -1,0 +1,66 @@
+package kr.co.hta.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.hta.movies.dao.QuestionDao;
+import kr.co.hta.vo.Question;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class QuestionController {
+	
+	QuestionDao questionDao = new QuestionDao();
+	
+	@RequestMapping("/semi/admin/questionlist.jf")
+	public ModelAndView list(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/questionlist.jsp");
+		
+		List<Question> questions = questionDao.selectAllQuestion();
+		
+		mav.addAttribute("questions", questions);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/questiondetailform.jf")
+	public ModelAndView form(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/questiondetailform.jsp");
+		
+		int no = Integer.parseInt(req.getParameter("qno"));
+		
+		Question question = questionDao.selectQuestionByNo(no);
+//		question.setAnswerContents(question.getAnswerContents().replace("\r\n", "<br>"));
+		mav.addAttribute("question", question);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/answeradd.jf")
+	public ModelAndView answeradd(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		
+		int no = Integer.parseInt(req.getParameter("qno"));
+		mav.setViewName("redirect:questiondetailform.jf?qno=" + no);
+		String answerContents = req.getParameter("answerContents");
+		answerContents = answerContents.replace("\r\n", "<br>");
+		
+		Question question = questionDao.selectQuestionByNo(no);
+		question.setAnswerContents(answerContents);
+		
+		questionDao.updateQuestion(question);
+		
+		
+		return mav;
+	}
+	
+}

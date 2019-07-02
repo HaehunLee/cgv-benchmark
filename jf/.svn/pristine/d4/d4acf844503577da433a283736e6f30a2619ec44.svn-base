@@ -1,0 +1,184 @@
+
+        .GPA_main_2 {
+            margin-top: 20px;
+        }
+        .GPA_main_posterimges{
+            max-width: 100%;
+            margin-top:20px;
+        }
+        body {
+            background-color: rgb(252, 254, 238);
+        }
+		 a.reservation_img{
+			text-decoration = none;
+		}
+        .GPA {
+            position: relative;
+            top: 30px;
+            font-size: 1.6rem;
+        }
+
+        .GPA1 {
+            margin-right: 20px;
+        }
+
+        .GPA_header>a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .GPA_main {
+            border: 1px solid gray;
+            background-color: rgb(54, 54, 54);
+           	height:469px;
+        }
+
+        .GPA_main_posterimgs {
+            border: 10px solid black;
+        }
+        .thumbnail {
+            background-color: rgb(54, 54, 54);
+            border: 1px solid rgb(54, 54, 54);
+        }
+        .caption > h4 {
+            color:white;    
+        }
+        .thumbnail_active{
+      	    color:black;
+            background-color: rgb(252, 254, 238);
+        }
+        #thumbnail_active{
+            color:black;
+            background-color: rgb(252, 254, 238);
+        }
+        .caption > p , .caption > .likes{
+        	color:#B3B4AA;
+        }
+        .white{
+            color:white;
+        }
+        .reservation_img{
+            margin-left: 10px;
+        	color:#B3B4AA;
+        }
+
+        .GPA3 {
+            font-size: 1.5rem;
+            padding: 5px;
+            height: 40px;
+            padding-top: 10px;
+            background-color: rgb(224, 226, 207);
+        }
+
+        .GPA3_1 {
+            background-color: rgb(135, 134, 124);
+        }
+
+        .GPA3_2 {
+            padding-left: 50px;
+        }
+
+        .GPA3_button {
+            position: relative;
+            bottom: 6px;
+        }
+
+        .GPA3_button_2 {
+            margin-right: -60px;
+        }
+
+        .cjPoint {
+            color: firebrick;
+        }
+        .GPA4_1 {
+            margin-top: 0px;
+        }
+
+        .GPA4_1>a {
+            color: black;
+            font-size:2rem;
+            text-decoration: none;
+        }
+
+        .GPA4_2 {
+            margin-top: 70px;
+        }
+
+        .GPA4_2_1 {
+            font-size: 4rem;
+            /*            padding-left: 0px;*/
+        }
+
+        .GPA4_2_img {
+            margin-bottom: 30px;
+        }
+
+        .GPA4_3 {
+            margin-top: 50px;
+        }
+
+        .GPA4_4 {
+            padding-left: 30px;
+        }
+
+        .GPA_main_3_1 {
+            margin-right: 10px;
+        }
+        .GPA_main_4{
+            border-top: 1px solid gray;
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+
+        .gpa_small_egg{
+            position: relative;
+            right:16px;
+            width:25px;
+        }
+        .GPA_main_4{
+            padding-left: 25px;
+            padding-right:25px;
+            margin-bottom: 20px;
+        }
+        .GPA_main_4_2_id{
+            position: relative;
+            font-size: 1.2rem;
+            top:7px;
+            right:13px;
+        }
+        .GPA_main_4_3_form{
+            height: 130px;
+        }
+        .GPA_main_4_3_contents{
+            font-size: 1.2rem;
+        }
+        .GPA_main_4_3_glyphicon{
+            position: relative;
+            right:10px;
+        }
+        .GPA_main_4_detail{
+            padding:10px;
+            border-bottom: 1px solid #CCCDBE;
+            border-right: 0.5px solid #CCCDBE;
+        }
+        .GPA_main_4_detail:nth-child(2n+2) {
+            border-right: none;
+        }
+        
+        .GPA_main_4_3_date{
+        	width:120px;
+        }
+        
+        .glyphicon-option-vertical{
+            font-size: 20px;
+        }
+        .GPA_main_4_3_likes > .likes{
+            margin-right: 5px;
+        }
+        .pagination > li > a{
+            color: black;
+            font-weight: bold;
+        }
+        .pagination > li{
+            background-color: rgb(252, 254, 238);
+        }

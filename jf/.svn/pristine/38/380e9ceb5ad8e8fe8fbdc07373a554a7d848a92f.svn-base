@@ -1,0 +1,89 @@
+package kr.co.hta.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import kr.co.hta.movies.dao.EventDao;
+import kr.co.hta.vo.Event;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class EventController {
+	
+	private EventDao eventDao = new EventDao();
+	
+	@RequestMapping("/semi/admin/eventlist.jf")
+	public ModelAndView select(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/eventlist.jsp");
+		
+		try {
+			Map<String, Integer> map = new HashMap<>();
+	        int pno = Integer.parseInt(req.getParameter("pno"));
+	         
+	        int begin = (pno-1)*10 + 1;
+	        int end = pno*10;
+	        map.put("begin", begin);
+	        map.put("end", end);
+	        List<Event> events = eventDao.selectEventByRange(map);
+	        int count = eventDao.selectCountEvent();
+	        count = (int)(Math.ceil((double)count/10)); 
+	        
+	        mav.addAttribute("count", count);
+	        
+	        mav.addAttribute("events", events);
+	        
+	      } catch (NumberFormatException e) {
+	    	  
+	      }
+		
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/eventform.jf")
+	public ModelAndView eventform(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/eventform.jsp");
+
+		
+		
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/insert.jf")
+	public ModelAndView insert(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:eventlist.jf?pno=1");
+		
+		String saveDirectory = "C:\\projects\\web_workspace\\jf\\WebContent\\photos";
+		
+		MultipartRequest mr = new MultipartRequest(req, saveDirectory, 1024*1024*50, "utf-8", new DefaultFileRenamePolicy());
+		
+		String category = mr.getParameter("category");
+		String title = mr.getParameter("title");
+		String startDate = mr.getParameter("startDate");
+		String endDate = mr.getParameter("endDate");
+		String imgName = mr.getFilesystemName("imgName");
+		
+		Event event = new Event();
+		event.setCategory(category);
+		event.setTitle(title);
+		event.setStartDate(startDate);
+		event.setEndDate(endDate);
+		event.setImgName(imgName);
+		
+		eventDao.insertEvent(event);
+		return mav;
+	}
+	
+	
+}

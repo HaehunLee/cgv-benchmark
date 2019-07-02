@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/jf/resources/bootstrap/css/header.css">
+</head>
+<body>
+     <div class="navbar navbar-inverse">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="">무비 차트</a></li>
+                <li class=""><a href="">빠른 예매</a></li>
+                <li><a href="">이벤트</a></li>
+            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                <li><a href="">로그인</a></li>
+                <li><a href="">로그아웃</a></li>
+                <li class=""><a href="">회원가입</a></li>
+            </ul>
+        </div>
+    </div>
+        <div class="container main_container">
+            <div class="row text-center header top_header">
+                <div class="col-sm-3">
+                    <a href="">
+                        <img src="http://img.cgv.co.kr/R2014/images/title/h1_cgv.png" alt="" style="max-width:70%; margin-top: 1px;">
+                    </a>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                       <div class="col-sm-12 header_center1">
+                            <div class="row">
+                                <a href=""><img src="http://img.cgv.co.kr/R2014/images/title/h2_cultureplex.png" alt="" style="max-width:45%;"></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 header_center2">
+                            <div class="row">
+                                <div class="col-sm-3 main_header dropdown">
+                                     <a href="" class="dropdown-toggle" data-toggle="dropdown">영화<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="">무비차트</a></li>
+                                            <li><a href="">무비 파인더</a></li>
+                                            <li><a href="">트레일러</a></li>
+                                            <li><a href="">평점</a></li>
+                                        </ul>
+                                </div>
+                                <div class="col-sm-3 main_header dropdown">
+                                    <a href="" class="dropdown-toggle" data-toggle="dropdown">예매<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="">빠른 예매</a></li>
+                                            <li><a href="">상영 시간표</a></li>
+                                        </ul>
+                                </div>
+                                <div class="col-sm-3 main_header">
+                                    <a href="">극장</a>
+                                </div>
+                                <div class="col-sm-3 main_header">
+                                    <a href="">이벤트</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

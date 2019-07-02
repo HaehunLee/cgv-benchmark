@@ -1,0 +1,112 @@
+package kr.co.hta.controller;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import kr.co.hta.movies.dao.NoticeDao;
+import kr.co.hta.vo.Notice;
+import kr.co.hta.vo.Question;
+import kr.co.jhta.mvc.annotation.Controller;
+import kr.co.jhta.mvc.annotation.RequestMapping;
+import kr.co.jhta.mvc.servlet.ModelAndView;
+
+@Controller
+public class CustomerCenterController {
+	NoticeDao noticeDao = new NoticeDao();
+	
+	@RequestMapping("/semi/admin/customercenter.jf")
+	public ModelAndView customercenter(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/customercenter.jsp");
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		
+		int	begin = 1;
+		int end = 5;
+		
+		map.put("begin",begin);
+		map.put("end",end);
+		
+		List<Notice> notices = noticeDao.selectNoticeByRange(map);
+		int count = noticeDao.allCount();
+		mav.addAttribute("notices", notices);
+		mav.addAttribute("count", count);
+
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/customercenter-noticesearch.jf")
+	public ModelAndView search(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/customercenter-noticesearch.jsp");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		int	begin = 1;
+		int end = 5;
+		
+		String search = req.getParameter("keyword");
+		
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("search", search);
+		
+		List<Notice> notices = noticeDao.selectSearchNotices(map);
+
+		int count = noticeDao.selectSearchNoticesCount(map);
+		count = (int)Math.ceil((double)count/20);
+		
+		int noticeCount = noticeDao.allCount();
+		mav.addAttribute("notices", notices);
+		mav.addAttribute("count", count);
+		mav.addAttribute("noticeCount", noticeCount);
+		return mav;
+	}
+	
+	
+	@RequestMapping("/semi/admin/customercenter-noticeform.jf")
+	public ModelAndView form(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/customercenter-noticeform.jsp");
+		
+		int no = Integer.parseInt(req.getParameter("nno"));
+		
+		Notice notice = noticeDao.selectNoticeByNo(no);
+//		question.setAnswerContents(question.getAnswerContents().replace("\r\n", "<br>"));
+		mav.addAttribute("notice", notice);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/semi/admin/customercenter-noticelist.jf")
+	public ModelAndView select(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("semi/admin/customercenter-noticelist.jsp");
+
+		int pno = Integer.parseInt(req.getParameter("pno"));
+		int begin = (pno-1)*20 + 1;
+		int end = pno*20;
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		List<Notice> notices = noticeDao.selectNoticeByRange(map);
+
+		
+		int count = noticeDao.allCount();
+		count = (int)Math.ceil((double)count/20);
+		
+		int noticeCount = noticeDao.allCount();
+		mav.addAttribute("notices", notices);
+		mav.addAttribute("count", count);
+		mav.addAttribute("noticeCount", noticeCount);
+		
+		return mav;
+	}
+}

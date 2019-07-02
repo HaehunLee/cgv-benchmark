@@ -1,0 +1,69 @@
+<%@page import="kr.co.hta.util.DateUtils"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.co.hta.movies.dao.MovieDao"%>
+<%@page import="kr.co.hta.vo.Movie"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>일반 평점 > 평점 > ${movie.korTitle }</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/main.css">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/header.css" />
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/event.css" />
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Nunito"
+	rel="stylesheet">
+<link rel="stylesheet" href="/jf/resources/bootstrap/css/GPA.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<style>
+
+@media ( min-width : 768px) {
+	.container {
+		width: 750px;
+	}
+}
+@media ( min-width : 1022px) {
+	.container {
+		width: 1080px;
+	}
+}
+
+</style>
+</head>
+
+<body>
+
+	<%@include file="../../common/navigation.jsp"%>
+	<div class="container">
+		<div class="row GPA_header_col_1">
+			<div class="col-sm-2">
+				<span class="GPA_left_1">이벤트</span>
+			</div>
+		</div>
+		<div class="row">
+			<hr class="event_hr_1" />
+		</div>
+		<div class="row event_threeImg_row">
+			<div class="col-sm-4">
+				<img src="http://img.cgv.co.kr/Event/Event/2019/0528/15590344712600.jpg" alt="" />
+			</div>
+			<div class="col-sm-4">
+				<img src="http://img.cgv.co.kr/Event/Event/2019/0524/15586667147940.jpg" alt="" />
+			</div>
+			<div class="col-sm-4">
+				<img src="http://img.cgv.co.kr/Event/Event/2019/0510/15574577333690.jpg" alt="" />
+			</div>
+		</div>
+	</div>
+	<%@ include file="../../common/footer.jsp"%>
+	
+</body>
+</html>

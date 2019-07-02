@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"href="/jf/resources/bootstrap/css/bootstrap.min.css">
+  <script src="/jf/resources/bootstrap/js/jquery.min.js"></script>
+  <script src="/jf/resources/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="nabar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+            <a href="" class="navbar-brand">CGV관리자페이지</a>
+           </div>
+              <ul class="nav navbar-nav">
+                    <li><a href="movielist.jf?pno=1">영화리스트</a></li>
+                  <li><a href="">Q&amp;A</a></li>
+                  <li><a href="">공지등록</a></li>
+                  <li><a href="">이벤트관리</a></li>
+              </ul>
+        
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="">로그아웃</a></li>
+              </ul>
+                 <p class="navbar-text  navbar-right" >관리자님환영합니다</p>
+       </div>
+</div>
+    <h1 class="text-center">관리자메인페이지</h1>
+    <hr/>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,72 @@
+package kr.co.hta.vo;
+
+public class CityCount {
+
+	private String seoul;
+	private String incheon;
+	private String bsus;
+	private String gjj;
+	private String kangwon;
+	private String djcc;
+	private String daegu;
+	private String kyeongsang;
+	private String kyeongi;
+	public String getSeoul() {
+		return seoul;
+	}
+	public void setSeoul(String seoul) {
+		this.seoul = seoul;
+	}
+	public String getIncheon() {
+		return incheon;
+	}
+	public void setIncheon(String incheon) {
+		this.incheon = incheon;
+	}
+	public String getBsus() {
+		return bsus;
+	}
+	public void setBsus(String bsus) {
+		this.bsus = bsus;
+	}
+	public String getGjj() {
+		return gjj;
+	}
+	public void setGjj(String gjj) {
+		this.gjj = gjj;
+	}
+	public String getKangwon() {
+		return kangwon;
+	}
+	public void setKangwon(String kangwon) {
+		this.kangwon = kangwon;
+	}
+	public String getDjcc() {
+		return djcc;
+	}
+	public void setDjcc(String djcc) {
+		this.djcc = djcc;
+	}
+	public String getDaegu() {
+		return daegu;
+	}
+	public void setDaegu(String daegu) {
+		this.daegu = daegu;
+	}
+	public String getKyeongsang() {
+		return kyeongsang;
+	}
+	public void setKyeongsang(String kyeongsang) {
+		this.kyeongsang = kyeongsang;
+	}
+	public String getKyeongi() {
+		return kyeongi;
+	}
+	public void setKyeongi(String kyeongi) {
+		this.kyeongi = kyeongi;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,131 @@
+        * {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .imgs {
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #ffffcc;
+            padding-top: 10px;
+        }
+
+        .main_header {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .header_center2 {
+
+            padding-top: 10px;
+        }
+
+        .main_header>a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .main_contents_section {
+            margin: 10px;
+        }
+
+        .aside {
+            width: 120px;
+            position: fixed;
+            top: 150px;
+            right: 150px;
+        }
+
+        .aside_imgs {
+            width: 103px;
+        }
+
+        fieldset>input {
+            width: 100px;
+            height: 25px;
+        }
+
+        fieldset>button {
+            height: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                width: 750px;
+            }
+        }
+
+        @media (min-width: 1022px) {
+            .container {
+                width: 1080px;
+            }
+
+            .footer {
+                margin-bottom: 20px;
+            }
+        }
+
+        .bottom {
+            padding: 20px;
+        }
+
+        .top_header {
+            height: 81px;
+            background-image: url("/jf/photos/header.PNG");
+            background-repeat: repeat-x;
+        }
+
+        .header_navbar {
+            height: 32px;
+        }
+
+        .navbar-default {
+            position: relative;
+            font-size: 1.2rem;
+            top: -20px;
+            margin-bottom: 0;
+        }
+
+        .navbar-nav>li>a {
+            font-size: 1.15rem;
+            color: black;
+            min-height: 32px;
+            padding-top: 10px;
+            padding-bottom: 12px;
+        }
+
+        .navbar {
+            min-height: 32px;
+            margin: 0;
+        }
+
+        .main_container {
+            position: relative;
+        }
+
+        .main-contents {
+            margin-top: 30px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+         }
+
+
+
+        .dropdown .dropdown-menu {
+            display: none;
+            background-color: darkslategray;
+         }
+         
+         
+        .second-title {
+        	height: 40px;
+            margin: 30px 0 15px;
+            background: url(http://img.cgv.co.kr/R2014/images/common/bg/bg_h3_line.jpg) repeat-x 0 50%;
+            line-height: 41px;
+            text-align: center;
+            font-weight: 500;
+        }
+
