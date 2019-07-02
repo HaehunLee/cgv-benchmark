@@ -27,7 +27,6 @@ public class CustomerCenterController {
 		mav.setViewName("semi/admin/customercenter.jsp");
 		int toggleNo = CommonUtils.stringToNumber(req.getParameter("toggleNo"), 1);
 		mav.addAttribute("toggleNo", toggleNo);
-		System.out.println("병미니 바봉");
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		
 		int	begin = (noticeDao.allCount() -4);
